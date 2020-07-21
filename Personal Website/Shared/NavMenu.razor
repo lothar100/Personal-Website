@@ -1,11 +1,16 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Personal Website</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+﻿<div class="navbar navbar-light">
+    <div class="navbar-brand">
+        <h1 class="code-bold">Pietr Langevoort</h1>
+        <h3 class="code-bold" style="margin-top: -19px">Game Developer</h3>
+        <h4 class="code-bold" style="margin-top: -15px">&amp; Software Generalist</h4>
+    </div>
+
+    <button @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass bg-dark" style="float:right" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
