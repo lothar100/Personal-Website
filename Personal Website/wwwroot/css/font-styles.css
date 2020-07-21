@@ -1,0 +1,22 @@
+@font-face {
+	font-family: "CODE";
+	src: url('/fonts/CODE Light.eot');
+	src: url('/fonts/CODE Light.eot?#iefix') format('embedded-opentype'),
+		 url('/fonts/CODE Light.woff') format('woff'),
+		 url('/fonts/CODE Light.ttf') format('truetype'),
+		 url('/fonts/CODE Light.svg#svgCODE') format('svg');
+	}
+@font-face {
+	font-family: "CODE";
+	font-weight: bold;
+	src: url('/fonts/CODE Bold.eot');
+	src: url('/fonts/CODE Bold.eot?#iefix') format('embedded-opentype'),
+		 url('/fonts/CODE Bold.woff') format('woff'),
+		 url('/fonts/CODE Bold.ttf') format('truetype'),
+		 url('/fonts/CODE Bold.svg#svgCODE') format('svg');
+	}
+
+.code-bold {font-family: "CODE"; font-weight: bold}
+.code{font-family: "CODE";}
+.roboto{font-family: "Roboto";}
+
