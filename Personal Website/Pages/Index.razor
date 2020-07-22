@@ -1,3 +1,11 @@
 ﻿@page "/"
 
-<h3>Public View</h3>
+    <AuthorizeView>
+        <Authorized>
+            <h3>Admin View</h3>
+        </Authorized>
+        <NotAuthorized>
+            <h3>Public View</h3>
+        </NotAuthorized>
+    </AuthorizeView>
+        

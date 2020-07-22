@@ -3,13 +3,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Personal_Website.Data.Models {
-    public class PasswordField {
+    public class AdminModel {
 
         [Required]
-        [Description("Enter Admin Password:")]
         [Display(Name = "Enter Admin Password:")]
-        [PasswordPropertyText]
         public string Password { get; set; }
+
+        public bool IsAuthenticated { get; set; }
 
     }
 }

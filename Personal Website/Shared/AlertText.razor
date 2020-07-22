@@ -1,0 +1,11 @@
+﻿@if (string.IsNullOrEmpty(Error) == false)
+{
+    <div class="alert alert-danger p-1" role="alert" style="font-size: 10px">
+        <strong>@Error</strong>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Error { get; set; }
+}

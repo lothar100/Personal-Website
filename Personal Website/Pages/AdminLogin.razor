@@ -1,8 +1,15 @@
 ﻿@page "/admin"
 
-<h3>Admin Login</h3>
+<h3>Admin Portal</h3>
 
-<EnterAdminPassword />
+<AuthorizeView>
+    <Authorized>
+        <LogoutAdminUser />
+    </Authorized>
+    <NotAuthorized>
+        <EnterAdminPassword />
+    </NotAuthorized>
+</AuthorizeView>
 
 @code {
 
