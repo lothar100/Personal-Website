@@ -21,7 +21,7 @@ namespace Personal_Website.Pages {
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string password)
         {
             //clear the existing external cookie
             try
@@ -30,6 +30,12 @@ namespace Personal_Website.Pages {
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+
+            //check password
+            if (password != _configuration.GetValue<string>("AdminSettings:Password"))
+            {
+                return BadRequest("Invalid Password");
             }
 
             //success, set claims identity now

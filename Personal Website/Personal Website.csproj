@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\Extensions\" />
     <Folder Include="Data\Models\" />
   </ItemGroup>
 
