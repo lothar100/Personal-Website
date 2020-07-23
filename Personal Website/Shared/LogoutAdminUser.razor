@@ -1,33 +1,16 @@
 ﻿
 @inject NavigationManager _NavigationManager
-@inject HttpClient _Http
-@inject IHttpContextAccessor httpContextAccessor
 
-<EditForm OnValidSubmit="Submit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="py-1"><button type="submit">Logout</button></div>
-    <AlertText Error=@ErrorMessage />
-</EditForm>
+<div class="py-1"><button @onclick="Submit">Logout</button></div>
+<AlertText Error=@ErrorMessage />
 
 @code {
 
     string ErrorMessage;
 
-    private async Task Submit()
+    private void Submit()
     {
-        var url = _NavigationManager.ToAbsoluteUri("/api/Admin/Logout");
-
-        var result = await _Http.GetAsync(url);
-        var response = await result.Content.ReadAsStringAsync();
-
-        if (result.StatusCode == System.Net.HttpStatusCode.OK)
-        {
-            _NavigationManager.NavigateTo(response);
-        }
-        else
-        {
-            ErrorMessage = response;
-        }
+        _NavigationManager.NavigateTo("/logout", true);
     }
+
 }
