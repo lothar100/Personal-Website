@@ -1,15 +1,24 @@
 ﻿@page "/admin"
 
-<h3>Admin Portal</h3>
+    <div class="card" style="max-width: 25rem">
 
-<AuthorizeView>
-    <Authorized>
-        <LogoutAdminUser />
-    </Authorized>
-    <NotAuthorized>
-        <EnterAdminPassword />
-    </NotAuthorized>
-</AuthorizeView>
+        <div class="card-body">
+            <h3 class="card-title">Admin Authorization</h3>
+
+            <AuthorizeView>
+
+                <Authorized>
+                    <LogoutAdminUser />
+                </Authorized>
+
+                <NotAuthorized>
+                    <EnterAdminPassword />
+                </NotAuthorized>
+
+            </AuthorizeView>
+        </div>
+
+    </div>
 
 @code {
 

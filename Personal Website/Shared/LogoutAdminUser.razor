@@ -1,8 +1,10 @@
 ﻿
 @inject NavigationManager _NavigationManager
 
-<div class="py-1"><button @onclick="Submit">Logout</button></div>
-<AlertText Error=@ErrorMessage />
+    <div class="py-1">
+        <button class="btn btn-outline-dark btn-sm" @onclick="Submit">Logout</button>
+        <AlertText Error=@ErrorMessage />
+    </div>
 
 @code {
 
