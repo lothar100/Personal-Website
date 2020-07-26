@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,7 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Personal_Website.Data.Context;
 using System.Net.Http;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
+using Personal_Website.Data.Services;
 
 namespace Personal_Website {
     public class Startup {
@@ -30,6 +35,13 @@ namespace Personal_Website {
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            services.AddDbContext<SqlDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SqlDbContext"));
+            });
+
+            services.AddScoped<ModuleService>();
 
             services.AddHttpContextAccessor();
             services.AddScoped<HttpContextAccessor>();
