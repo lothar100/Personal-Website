@@ -29,17 +29,23 @@ namespace Personal_Website.Data.Services {
 
         public async Task<int> AddOrUpdate(PageModuleModel pageModule)
         {
-            _context.Modules.Add(pageModule);
-            return await _context.SaveChangesAsync();
+            if (Exists(pageModule.Id))
+            {
+                return await Update(pageModule.Id, pageModule);
+            }
+            else
+            {
+                return await Insert(pageModule);
+            }
         }
 
-        public async Task<int> Insert(PageModuleModel pageModule)
+        private async Task<int> Insert(PageModuleModel pageModule)
         {
             _context.Modules.Add(pageModule);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Update(int id, PageModuleModel pageModule)
+        private async Task<int> Update(int id, PageModuleModel pageModule)
         {
             var module = await _context.Modules.FindAsync(id);
 

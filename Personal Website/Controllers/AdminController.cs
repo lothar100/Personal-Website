@@ -9,7 +9,7 @@ namespace Personal_Website.Controllers {
     [Route("api/[controller]")]
     public class AdminController : Controller {
 
-        IConfiguration _configuration;
+        readonly IConfiguration _configuration;
 
         public AdminController(IConfiguration configuration)
         {

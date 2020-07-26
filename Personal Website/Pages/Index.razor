@@ -1,5 +1,12 @@
-﻿@page "/"
+﻿@inject ModuleService _Service
+@page "/"
 
+@if (Modules == null)
+{
+    <div>Loading...</div>
+}
+else
+{
     <AuthorizeView>
 
         <NotAuthorized>
@@ -12,5 +19,20 @@
 
     </AuthorizeView>
 
-    <TempExperience />
-        
+    @foreach (var model in Modules)
+    {
+        <PageModule Model="model" />
+    }
+}
+
+@code {
+
+    private List<PageModuleModel> Modules;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Modules = await _Service.GetAll();
+    }
+
+}
+

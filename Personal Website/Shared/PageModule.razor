@@ -1,15 +1,57 @@
-﻿<div class="content">
+﻿@inject ModuleService _Service
+@inject NavigationManager _NavigationManager
 
+<div class="content">
+    <div class="card" style="max-width: 90rem">
+
+        <div class="card-body">
+            <AuthorizeView>
+                <NotAuthorized>
+
+                    @if (string.IsNullOrWhiteSpace(@Model.Title) == false)
+                    {
+                        <h3 class="card-title">@Model.Title</h3>
+                    }
+
+                    @if (string.IsNullOrWhiteSpace(@Model.Summary) == false)
+                    {
+                        <p class="card-text">@Model.Summary</p>
+                    }
+                    
+                </NotAuthorized>
+
+                <Authorized Context="Auth">
+
+                    <EditForm Model="@Model" OnValidSubmit="Save">
+                        <div><InputText type="text" class="card-title form-control" @bind-Value="@Model.Title"></InputText></div>
+                        <div><InputTextArea type="text" class="card-text form-control" @bind-Value="@Model.Summary"></InputTextArea></div>
+                        <div class="pt-2">
+                            <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
+                            <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>
+                        </div>
+                    </EditForm>
+
+                </Authorized>
+            </AuthorizeView>
+        </div>
+
+    </div>
 </div>
-
-<AuthorizeView>
-
-    <Authorized>
-        <h3>Admin View</h3>
-    </Authorized>
-
-</AuthorizeView>
 
 @code {
 
+    [Parameter]
+    public PageModuleModel Model { get; set; }
+
+    private async void Save()
+    {
+        await _Service.AddOrUpdate(Model);
+        _NavigationManager.NavigateTo("refresh");
+    }
+
+    private async void Delete()
+    {
+        await _Service.Delete(Model.Id);
+        _NavigationManager.NavigateTo("refresh");
+    }
 }

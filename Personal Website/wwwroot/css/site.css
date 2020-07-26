@@ -19,6 +19,11 @@ a, .btn-link {
     box-shadow: none;
 }
 
+.form-control:focus {
+    border-color: #000000;
+    box-shadow: none;
+}
+
 app {
     position: relative;
     display: flex;
@@ -111,11 +116,11 @@ app {
 }
 
 .valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+    /*outline: 1px solid #26b050;*/
 }
 
 .invalid {
-    outline: 1px solid red;
+    /*outline: 1px solid red;*/
 }
 
 .validation-message {

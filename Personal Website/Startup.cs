@@ -41,7 +41,7 @@ namespace Personal_Website {
                 options.UseSqlServer(Configuration.GetConnectionString("SqlDbContext"));
             });
 
-            services.AddScoped<ModuleService>();
+            services.AddScoped<ModuleService>(); //not wowrking as .AddSingleton<>() ?
 
             services.AddHttpContextAccessor();
             services.AddScoped<HttpContextAccessor>();
