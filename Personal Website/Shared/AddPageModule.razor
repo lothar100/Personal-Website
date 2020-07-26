@@ -1,0 +1,28 @@
+﻿@inject ModuleService _Service
+@inject NavigationManager _NavigationManager
+
+<AuthorizeView>
+    <Authorized>
+
+        <div class="content">
+            <div class="card" style="max-width: 90rem">
+                <div class="card-body">
+                    <div class="py-1">
+                        <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Add">Add Module</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+    private async void Add()
+    {
+        await _Service.AddOrUpdate(new PageModuleModel());
+        _NavigationManager.NavigateTo("refresh");
+    }
+}

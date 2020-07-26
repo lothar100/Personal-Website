@@ -1,42 +1,49 @@
 ﻿@inject ModuleService _Service
 @inject NavigationManager _NavigationManager
 
-<div class="content">
-    <div class="card" style="max-width: 90rem">
+    <AuthorizeView>
+        <NotAuthorized>
 
-        <div class="card-body">
-            <AuthorizeView>
-                <NotAuthorized>
+            @if (Model.IsEmpty() == false)
+            {
+                <div class="content">
+                    <div class="card" style="max-width: 90rem">
+                        <div class="card-body">
+                            @if (string.IsNullOrWhiteSpace(Model.Title) == false)
+                            {
+                                <h3 class="card-title">@Model.Title</h3>
+                            }
 
-                    @if (string.IsNullOrWhiteSpace(@Model.Title) == false)
-                    {
-                        <h3 class="card-title">@Model.Title</h3>
-                    }
-
-                    @if (string.IsNullOrWhiteSpace(@Model.Summary) == false)
-                    {
-                        <p class="card-text">@Model.Summary</p>
-                    }
-                    
-                </NotAuthorized>
-
-                <Authorized Context="Auth">
-
-                    <EditForm Model="@Model" OnValidSubmit="Save">
-                        <div><InputText type="text" class="card-title form-control" @bind-Value="@Model.Title"></InputText></div>
-                        <div><InputTextArea type="text" class="card-text form-control" @bind-Value="@Model.Summary"></InputTextArea></div>
-                        <div class="pt-2">
-                            <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
-                            <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>
+                            @if (string.IsNullOrWhiteSpace(Model.Summary) == false)
+                            {
+                                <p class="card-text">@Model.Summary</p>
+                            }
                         </div>
-                    </EditForm>
+                    </div>
+                </div>
+            }
 
-                </Authorized>
-            </AuthorizeView>
-        </div>
+        </NotAuthorized>
 
-    </div>
-</div>
+        <Authorized Context="Auth">
+
+            <div class="content">
+                <div class="card" style="max-width: 90rem">
+                    <div class="card-body">
+                        <EditForm Model="@Model" OnValidSubmit="Save">
+                            <div><InputText type="text" class="card-title form-control" @bind-Value="@Model.Title"></InputText></div>
+                            <div><InputTextArea type="text" class="card-text form-control" @bind-Value="@Model.Summary"></InputTextArea></div>
+                            <div class="pt-2">
+                                <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+            
+        </Authorized>
+    </AuthorizeView>
 
 @code {
 
