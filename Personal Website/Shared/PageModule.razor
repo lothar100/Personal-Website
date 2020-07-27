@@ -10,12 +10,12 @@
                 <div class="card-body">
                     @if (string.IsNullOrWhiteSpace(Model.Title) == false)
                     {
-                        <h3 class="card-title">@Model.Title</h3>
+                    <h3 class="card-title">@((MarkupString)Model.Title)</h3>
                     }
 
                     @if (string.IsNullOrWhiteSpace(Model.Summary) == false)
                     {
-                        <p class="card-text">@Model.Summary</p>
+                <p class="card-text">@((MarkupString)Model.Summary)</p>
                     }
                 </div>
             </div>
@@ -32,6 +32,10 @@ else
                     <div class="card-body">
                         <EditForm Model="@Model" OnValidSubmit="Save">
                             <div><InputText type="text" class="card-title form-control" @bind-Value="@Model.Title"></InputText></div>
+                            @*<div class="form-group">
+                                <label for="imageFileSelect">Uploaded Images</label>
+                                <input type="file" class="form-control-file" id="imageFileSelect" multiple>
+                            </div>*@
                             <div><InputTextArea type="text" class="card-text form-control" @bind-Value="@Model.Summary"></InputTextArea></div>
                             <div class="pt-2">
                                 <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
