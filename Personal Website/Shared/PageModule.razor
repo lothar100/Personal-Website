@@ -32,7 +32,7 @@ else
                     <div class="card-body">
                         <EditForm Model="@Model" OnValidSubmit="Save">
                             <div><InputText type="text" class="card-title form-control form-control-lg" @bind-Value="@Model.Title"></InputText></div>
-                            <div><InputTextArea type="text" class="card-text form-control" rows="@Model.SummaryRows" style="resize:none" @bind-Value="@Model.Summary"></InputTextArea></div>
+                            <div><InputTextArea type="text" class="card-text form-control" rows="@Model.SummaryRows" style="resize:none" @bind-Value="@Model.Summary"  @oninput="BindSummary"></InputTextArea></div>
                             <div class="pt-2">
                                 <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
                                 <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>
@@ -65,5 +65,10 @@ else
     {
         await _Service.Delete(Model.Id);
         _NavigationManager.NavigateTo("refresh");
+    }
+
+    public void BindSummary(ChangeEventArgs e)
+    {
+        Model.Summary = e.Value.ToString();
     }
 }
