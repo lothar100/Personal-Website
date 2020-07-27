@@ -5,7 +5,7 @@
 {
     @if (Model.IsEmpty() == false)
     {
-        <div class="content">
+        <div class="container pb-3">
             <div class="card" style="max-width: 90rem">
                 <div class="card-body">
                     @if (string.IsNullOrWhiteSpace(Model.Title) == false)
@@ -27,16 +27,12 @@ else
     <AuthorizeView>
         <Authorized Context="Auth">
 
-            <div class="content">
+            <div class="container pb-3">
                 <div class="card" style="max-width: 90rem">
                     <div class="card-body">
                         <EditForm Model="@Model" OnValidSubmit="Save">
-                            <div><InputText type="text" class="card-title form-control" @bind-Value="@Model.Title"></InputText></div>
-                            @*<div class="form-group">
-                                <label for="imageFileSelect">Uploaded Images</label>
-                                <input type="file" class="form-control-file" id="imageFileSelect" multiple>
-                            </div>*@
-                            <div><InputTextArea type="text" class="card-text form-control" @bind-Value="@Model.Summary"></InputTextArea></div>
+                            <div><InputText type="text" class="card-title form-control form-control-lg" @bind-Value="@Model.Title"></InputText></div>
+                            <div><InputTextArea type="text" class="card-text form-control" rows="@Model.SummaryRows" style="resize:none" @bind-Value="@Model.Summary"></InputTextArea></div>
                             <div class="pt-2">
                                 <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
                                 <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>

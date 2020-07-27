@@ -6,29 +6,35 @@
 
 @if (Modules == null || authState == null)
 {
-    <div>Loading...</div>
+    <div class="container pb-3">Loading...</div>
 }
 else
 {
     <AuthorizeView>
 
         <NotAuthorized>
-            <h3>Public View</h3>
+            <div class="container pb-3">
+                <h3>Public View</h3>
+            </div>
         </NotAuthorized>
 
         <Authorized>
             @if (_SessionState.IsAdminView == true)
             {
-                <div class="row">
-                    <h3 class="mb-0">Admin View</h3>
-                    <div class="mx-1" @onclick="ToggleView"><span class="oi oi-eye text-success align-middle"></span></div>
+                <div class="container pb-3">
+                    <div class="row">
+                        <h3 class="mb-0">Admin View</h3>
+                        <div class="mx-1" @onclick="ToggleView"><span class="oi oi-eye text-success align-middle"></span></div>
+                    </div>
                 </div>
             }
             else
             {
-                <div class="row">
-                    <h3 class="mb-0">Public View</h3>
-                    <div class="mx-1" @onclick="ToggleView"><span class="oi oi-eye text-muted align-middle"></span></div>
+                <div class="container pb-3">
+                    <div class="row">
+                        <h3 class="mb-0">Public View</h3>
+                        <div class="mx-1" @onclick="ToggleView"><span class="oi oi-eye text-muted align-middle"></span></div>
+                    </div>
                 </div>
             }
         </Authorized>
@@ -60,6 +66,7 @@ else
             _SessionState.IsAdminView = authState.User.Identity.IsAuthenticated;
         }
     }
+
     private void ToggleView()
     {
         if (authState.User.Identity.IsAuthenticated)
