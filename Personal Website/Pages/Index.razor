@@ -22,19 +22,15 @@ else
             @if (_SessionState.IsAdminView == true)
             {
                 <div class="container pb-3">
-                    <div class="row">
-                        <h3 class="mb-0">Admin View</h3>
-                        <div class="mx-1" @onclick="ToggleView"><span class="oi oi-eye text-success align-middle"></span></div>
-                    </div>
+                    <h3 class="d-inline mb-0">Admin View</h3>
+                    <div class="d-inline mx-1" @onclick="ToggleView"><span class="oi oi-eye text-success align-middle"></span></div>
                 </div>
             }
             else
             {
                 <div class="container pb-3">
-                    <div class="row">
-                        <h3 class="mb-0">Public View</h3>
-                        <div class="mx-1" @onclick="ToggleView"><span class="oi oi-eye text-muted align-middle"></span></div>
-                    </div>
+                    <h3 class="d-inline mb-0">Public View</h3>
+                    <div class="d-inline mx-1" @onclick="ToggleView"><span class="oi oi-eye text-muted align-middle"></span></div>
                 </div>
             }
         </Authorized>

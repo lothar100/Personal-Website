@@ -1,49 +1,46 @@
-﻿<div class="navbar navbar-light">
-    <div class="navbar-brand">
-        <h1 class="code-bold">Pietr Langevoort</h1>
-        <h3 class="code-bold" style="margin-top: -19px">Game Developer</h3>
-        <h4 class="code-bold" style="margin-top: -15px">&amp; Software Generalist</h4>
+﻿
+
+    <div class="d-inline navbar-light">
+        <button class="btn btn-sm rounded border-dark bg-white" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="@NavMenuCssClass rounded-left bg-dark position-fixed" style="right:0;z-index:1" @onclick="ToggleNavMenu">
+            <ul class="nav flex-column">
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        <span class="oi oi-home" aria-hidden="true"></span> Home
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="">
+                        <span class="oi oi-briefcase" aria-hidden="true"></span> Experience
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="">
+                        <span class="oi oi-book" aria-hidden="true"></span> Education
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="">
+                        <span class="oi oi-bolt" aria-hidden="true"></span> Portfolio 1
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="">
+                        <span class="oi oi-bolt" aria-hidden="true"></span> Portfolio 2
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="admin">
+                        <span class="oi oi-browser" aria-hidden="true"></span> Admin
+                    </NavLink>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <button @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
 
-<div class="@NavMenuCssClass bg-dark" style="right:0;position:absolute;z-index:1" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="">
-                <span class="oi oi-briefcase" aria-hidden="true"></span> Experience
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="">
-                <span class="oi oi-book" aria-hidden="true"></span> Education
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="">
-                <span class="oi oi-bolt" aria-hidden="true"></span> Portfolio 1
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="">
-                <span class="oi oi-bolt" aria-hidden="true"></span> Portfolio 2
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="admin">
-                <span class="oi oi-browser" aria-hidden="true"></span> Admin
-            </NavLink>
-        </li>
-    </ul>
-</div>
 
 @code {
     private bool collapseNavMenu = true;
