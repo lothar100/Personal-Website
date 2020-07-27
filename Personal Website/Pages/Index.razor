@@ -1,7 +1,10 @@
 ﻿@inject ModuleService _Service
+@inject NavigationManager _NavigationManager
+@inject AuthenticationStateProvider _AuthenticationStateProvider
+@inject SessionState _SessionState
 @page "/"
 
-@if (Modules == null)
+@if (Modules == null || authState == null)
 {
     <div>Loading...</div>
 }
@@ -14,26 +17,56 @@ else
         </NotAuthorized>
 
         <Authorized>
-            <h3>Admin View</h3>
+            @if (_SessionState.IsAdminView == true)
+            {
+                <div class="row">
+                    <h3 class="mb-0">Admin View</h3>
+                    <div class="mx-1" @onclick="ToggleView"><span class="oi oi-eye text-success align-middle"></span></div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <h3 class="mb-0">Public View</h3>
+                    <div class="mx-1" @onclick="ToggleView"><span class="oi oi-eye text-muted align-middle"></span></div>
+                </div>
+            }
         </Authorized>
 
     </AuthorizeView>
 
     @foreach (var model in Modules)
     {
-        <PageModule Model="model" />
+        <PageModule Model="model" IsAdminView="@_SessionState.IsAdminView" />
     }
 
-    <AddPageModule />
+    @if (_SessionState.IsAdminView == true)
+    {
+        <AddPageModule />
+    }
 }
 
 @code {
 
+    private AuthenticationState authState;
     private List<PageModuleModel> Modules;
 
     protected override async Task OnInitializedAsync()
     {
+        authState = await _AuthenticationStateProvider.GetAuthenticationStateAsync();
         Modules = await _Service.GetAll();
+        if (_SessionState.IsAdminView == null)
+        {
+            _SessionState.IsAdminView = authState.User.Identity.IsAuthenticated;
+        }
+    }
+    private void ToggleView()
+    {
+        if (authState.User.Identity.IsAuthenticated)
+        {
+            _SessionState.IsAdminView = !_SessionState.IsAdminView;
+            _NavigationManager.NavigateTo("/refresh");
+        }
     }
 
 }

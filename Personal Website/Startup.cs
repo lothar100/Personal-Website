@@ -11,6 +11,7 @@ using System.Net.Http;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using Personal_Website.Data.Services;
+using Personal_Website.Classes;
 
 namespace Personal_Website {
     public class Startup {
@@ -42,6 +43,7 @@ namespace Personal_Website {
             });
 
             services.AddScoped<ModuleService>(); //not wowrking as .AddSingleton<>() ?
+            services.AddScoped<SessionState>();
 
             services.AddHttpContextAccessor();
             services.AddScoped<HttpContextAccessor>();

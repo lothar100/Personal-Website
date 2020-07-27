@@ -1,30 +1,30 @@
 ﻿@inject ModuleService _Service
 @inject NavigationManager _NavigationManager
 
-    <AuthorizeView>
-        <NotAuthorized>
+@if (IsAdminView == false)
+{
+    @if (Model.IsEmpty() == false)
+    {
+        <div class="content">
+            <div class="card" style="max-width: 90rem">
+                <div class="card-body">
+                    @if (string.IsNullOrWhiteSpace(Model.Title) == false)
+                    {
+                        <h3 class="card-title">@Model.Title</h3>
+                    }
 
-            @if (Model.IsEmpty() == false)
-            {
-                <div class="content">
-                    <div class="card" style="max-width: 90rem">
-                        <div class="card-body">
-                            @if (string.IsNullOrWhiteSpace(Model.Title) == false)
-                            {
-                                <h3 class="card-title">@Model.Title</h3>
-                            }
-
-                            @if (string.IsNullOrWhiteSpace(Model.Summary) == false)
-                            {
-                                <p class="card-text">@Model.Summary</p>
-                            }
-                        </div>
-                    </div>
+                    @if (string.IsNullOrWhiteSpace(Model.Summary) == false)
+                    {
+                        <p class="card-text">@Model.Summary</p>
+                    }
                 </div>
-            }
-
-        </NotAuthorized>
-
+            </div>
+        </div>
+    }
+}
+else
+{
+    <AuthorizeView>
         <Authorized Context="Auth">
 
             <div class="content">
@@ -41,14 +41,19 @@
                     </div>
                 </div>
             </div>
-            
+
         </Authorized>
     </AuthorizeView>
+}
+
 
 @code {
 
     [Parameter]
     public PageModuleModel Model { get; set; }
+
+    [Parameter]
+    public bool? IsAdminView { get; set; }
 
     private async void Save()
     {
