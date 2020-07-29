@@ -1,4 +1,6 @@
-﻿@inject IHttpContextAccessor _HttpContextAccessor
+﻿@using System.Net.Mail
+@inject SmtpClient _SmtpClient
+@inject IHttpContextAccessor _HttpContextAccessor
 
 <AuthorizeView>
     <NotAuthorized Context="Auth">
@@ -7,7 +9,7 @@
             <div class="card" style="max-width: 90rem">
                 <div class="card-body">
                     <h3 class="card-title">Contact Me</h3>
-                    <EditForm Model="@Model" OnValidSubmit="SendEmail">
+                    <EditForm Model="@Model" OnValidSubmit="SendEmail" @onkeydown="ClearSuccessMessage">
 
                         <div class="pl-1 pt-2">
                             <label class="mb-1" for="name">
@@ -35,6 +37,7 @@
 
                         <div class="pt-2">
                             <button type="submit" class="btn btn-outline-dark btn-sm">Send</button>
+                            <AlertText Class="success" Text="@SuccessMessage"/>
                         </div>
                     </EditForm>
                 </div>
@@ -46,6 +49,7 @@
 </AuthorizeView>
 
 @code {
+    string SuccessMessage;
     ContactEmailModel Model = new ContactEmailModel();
 
     private void BindMessage(ChangeEventArgs e)
@@ -56,5 +60,36 @@
     private async Task SendEmail()
     {
         Model.RemoteIPAddress = _HttpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+
+        MailMessage mailMessage = new MailMessage()
+        {
+            From = new MailAddress("infrared.skittle@gmail.com"),
+            Subject = $"{Model.Name} sent you a message from pietrlangevoort.com",
+            Body =
+            $"{Environment.NewLine}" +
+            $"Name: {Model.Name}" +
+            $"{Environment.NewLine}" +
+            $"Email: {Model.EmailAddress}" +
+            $"{Environment.NewLine}" +
+            $"Message: {Model.Message}" +
+            $"{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"IP: {Model.RemoteIPAddress}"
+        };
+        mailMessage.To.Add(new MailAddress("infrared.skittle@gmail.com"));
+
+        _SmtpClient.Send(mailMessage);
+        UpdateAfterSend();
+    }
+
+    private void UpdateAfterSend()
+    {
+        Model = new ContactEmailModel();
+        SuccessMessage = "Email Sent";
+    }
+
+    private void ClearSuccessMessage()
+    {
+        SuccessMessage = null;
     }
 }

@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using Personal_Website.Data.Services;
 using Personal_Website.Classes;
+using System.Net.Mail;
+using System.Net;
+using System;
 
 namespace Personal_Website {
     public class Startup {
@@ -49,6 +52,21 @@ namespace Personal_Website {
             services.AddScoped<HttpContextAccessor>();
             services.AddHttpClient();
             services.AddScoped<HttpClient>();
+
+            services.AddScoped<SmtpClient>(setup =>
+            {
+                string server = Configuration.GetSection("SMTP")["Server"];
+                int port = Convert.ToInt32(Configuration.GetSection("SMTP")["DefaultPort"]);
+                string username = Configuration.GetSection("SMTP")["Username"];
+                string password = Configuration.GetSection("SMTP")["Password"];
+
+                SmtpClient smtpClient = new SmtpClient(server, port)
+                {
+                    Credentials = new NetworkCredential(username, password)
+                };
+
+                return smtpClient;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

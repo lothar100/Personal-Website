@@ -1,11 +1,13 @@
-﻿@if (string.IsNullOrEmpty(Error) == false)
+﻿@if (string.IsNullOrEmpty(Text) == false)
 {
-    <div class="alert alert-danger p-1 m-0" role="alert" style="font-size: 10px; display:inline-block;">
-        <strong>@Error</strong>
+    <div class="alert alert-@Class p-1 m-0" role="alert" style="font-size: 10px; display:inline-block;">
+        <strong>@Text</strong>
     </div>
 }
 
 @code {
     [Parameter]
-    public string Error { get; set; }
+    public string Class { get; set; } = "danger";
+    [Parameter]
+    public string Text { get; set; }
 }
