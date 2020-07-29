@@ -67,7 +67,7 @@ else
         _NavigationManager.NavigateTo("refresh");
     }
 
-    public void BindSummary(ChangeEventArgs e)
+    private void BindSummary(ChangeEventArgs e)
     {
         Model.Summary = e.Value.ToString();
     }

@@ -1,0 +1,60 @@
+﻿@inject IHttpContextAccessor _HttpContextAccessor
+
+<AuthorizeView>
+    <NotAuthorized Context="Auth">
+
+        <div class="container pb-3">
+            <div class="card" style="max-width: 90rem">
+                <div class="card-body">
+                    <h3 class="card-title">Contact Me</h3>
+                    <EditForm Model="@Model" OnValidSubmit="SendEmail">
+
+                        <div class="pl-1 pt-2">
+                            <label class="mb-1" for="name">
+                                <span class="oi oi-person"></span>
+                                @Helper.DisplayNameFor(typeof(ContactEmailModel), "Name")
+                            </label>
+                        </div>
+                        <div><InputText class="card-text form-control" type="text" id="name" placeholder="Enter Name" @bind-Value="@Model.Name"></InputText></div>
+
+                        <div class="pl-1 pt-2">
+                            <label class="mb-1" for="name">
+                                <span class="oi oi-envelope-closed"></span>
+                                @Helper.DisplayNameFor(typeof(ContactEmailModel), "EmailAddress")
+                            </label>
+                        </div>
+                        <div><InputText class="card-text form-control" type="text" id="email" placeholder="Enter Email" @bind-Value="@Model.EmailAddress"></InputText></div>
+
+                        <div class="pl-1 pt-2">
+                            <label class="mb-1" for="name">
+                                <span class="oi oi-comment-square"></span>
+                                @Helper.DisplayNameFor(typeof(ContactEmailModel), "Message")
+                            </label>
+                        </div>
+                        <div><InputTextArea class="card-text form-control" style="resize:none; white-space:pre; overflow-wrap:normal;" type="text" id="message" placeholder="Type Your Message" rows="@Model.MessageRows" @bind-Value="@Model.Message" @oninput="BindMessage"></InputTextArea></div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="btn btn-outline-dark btn-sm">Send</button>
+                        </div>
+                    </EditForm>
+                </div>
+
+            </div>
+        </div>
+
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    ContactEmailModel Model = new ContactEmailModel();
+
+    private void BindMessage(ChangeEventArgs e)
+    {
+        Model.Message = e.Value.ToString();
+    }
+
+    private async Task SendEmail()
+    {
+        Model.RemoteIPAddress = _HttpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+    }
+}
