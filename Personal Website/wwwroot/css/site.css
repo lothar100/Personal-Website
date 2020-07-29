@@ -101,8 +101,8 @@ app {
         top: 0;
     }
 
-    .main > div {
+    /*.main > div {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
-    }
+    }*/
 }
