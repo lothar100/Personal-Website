@@ -17,7 +17,7 @@
                                 @Helper.DisplayNameFor(typeof(ContactEmailModel), "Name")
                             </label>
                         </div>
-                        <div><InputText class="card-text form-control" type="text" id="name" placeholder="Enter Name" @bind-Value="@Model.Name"></InputText></div>
+                        <div><InputText class="card-text form-control form-control-sm" style="max-width:576px" type="text" id="name" placeholder="Enter Name" @bind-Value="@Model.Name"></InputText></div>
 
                         <div class="pl-1 pt-2">
                             <label class="mb-1" for="name">
@@ -25,7 +25,7 @@
                                 @Helper.DisplayNameFor(typeof(ContactEmailModel), "EmailAddress")
                             </label>
                         </div>
-                        <div><InputText class="card-text form-control" type="text" id="email" placeholder="Enter Email" @bind-Value="@Model.EmailAddress"></InputText></div>
+                        <div><InputText class="card-text form-control form-control-sm" style="max-width:576px" type="text" id="email" placeholder="Enter Email" @bind-Value="@Model.EmailAddress"></InputText></div>
 
                         <div class="pl-1 pt-2">
                             <label class="mb-1" for="name">
@@ -33,7 +33,7 @@
                                 @Helper.DisplayNameFor(typeof(ContactEmailModel), "Message")
                             </label>
                         </div>
-                        <div><InputTextArea class="card-text form-control" style="resize:none; white-space:pre; overflow-wrap:normal;" type="text" id="message" placeholder="Type Your Message" rows="@Model.MessageRows" @bind-Value="@Model.Message" @oninput="BindMessage"></InputTextArea></div>
+                        <div><InputTextArea class="card-text form-control form-control-sm" style="max-width:576px; resize:none; white-space:pre; overflow-wrap:normal;" type="text" id="message" placeholder="Type Your Message" rows="@Model.MessageRows" @bind-Value="@Model.Message" @oninput="BindMessage"></InputTextArea></div>
 
                         <div class="pt-2">
                             <button type="submit" class="btn btn-outline-dark btn-sm">Send</button>
