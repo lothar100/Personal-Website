@@ -1,32 +1,38 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+:root {
+    --custom-white: rgba(248, 249, 250, 1);
+    --custom-gray: rgba(189, 193, 198, 1);
+    --custom-darkgray: rgba(30, 30, 31, 1);
+}
+
 html, body {
-    background-color: black;
-    color: white;
+    background-color: #121212;
+    color: var(--custom-white);
 }
 
 .card {
-    background-color: black;
-    border-color: white;
-    color: white;
+    background-color: var(--custom-darkgray);
+    border-color: var(--custom-gray);
+    color: var(--custom-gray);
 }
 
-.card-title {
-    color: white;
+h3.card-title {
+    color: var(--custom-white);
 }
 
 .btn-outline-dark {
-    color: white;
-    border-color: white;
+    color: var(--custom-white);
+    border-color: var(--custom-white);
     background-color: black;
 }
 
-.btn-outline-dark:hover {
-    color: black;
-    border-color: black;
-    background-color: white;
-}
+    .btn-outline-dark:hover {
+        color: black;
+        border-color: black;
+        background-color: var(--custom-white);
+    }
 
 .form-control:focus {
-    border-color: white;
+    border-color: var(--custom-white);
 }
