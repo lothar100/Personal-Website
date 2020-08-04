@@ -1,0 +1,27 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    background-color: black;
+    color: white;
+}
+
+.card {
+    background-color: black;
+    border-color: white;
+}
+
+.btn-outline-dark {
+    color: white;
+    border-color: white;
+    background-color: black;
+}
+
+.btn-outline-dark:hover {
+    color: black;
+    border-color: black;
+    background-color: white;
+}
+
+.form-control:focus {
+    border-color: white;
+}

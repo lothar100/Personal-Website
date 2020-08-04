@@ -1,0 +1,5 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+.form-control:focus {
+    border-color: black;
+}
