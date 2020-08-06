@@ -11,6 +11,10 @@ html, body {
     color: var(--custom-white);
 }
 
+.custom-topBar {
+    background-color: #121212;
+}
+
 .card {
     background-color: var(--custom-darkgray);
     border-color: var(--custom-gray);

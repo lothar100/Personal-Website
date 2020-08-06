@@ -1,16 +1,16 @@
 ﻿
 .nineties-layer-1 {
-    margin-right: -374.77px;
     position: relative;
     z-index: 3;
 }
 
 .nineties-layer-2 {
-    margin-right: -374.77px;
     color: black;
+    left: 0px;
+    top: 0px;
     opacity: 0;
     z-index: 2;
-    position: relative;
+    position: absolute;
     animation-name: n-layer2;
     animation-duration: .5s;
     animation-iteration-count: 3;
@@ -18,9 +18,11 @@
 
 .nineties-layer-3 {
     color: black;
+    left: 0px;
+    top: 0px;
     opacity: 0;
     z-index: 1;
-    position: relative;
+    position: absolute;
     animation-name: n-layer3;
     animation-duration: .5s;
     animation-iteration-count: 3;

@@ -3,3 +3,7 @@
 .form-control:focus {
     border-color: black;
 }
+
+.custom-topBar {
+    background-color: white;
+}
