@@ -39,7 +39,6 @@ h3.card-title {
 
 .btn-outline-dark {
     color: var(--custom-white);
-    border-color: var(--custom-white);
     background-color: black;
 }
 

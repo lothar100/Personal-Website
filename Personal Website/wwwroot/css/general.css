@@ -16,13 +16,18 @@ a:not([href]):not([tabindex]):hover {
     color: dimgrey;
 }
 
+.btn-outline-dark {
+    border: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
 .btn:focus {
     outline: none;
     box-shadow: none;
 }
 
 .custom-topBar {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .custom-body {
