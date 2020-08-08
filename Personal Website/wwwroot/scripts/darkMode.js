@@ -1,12 +1,10 @@
 ﻿
 const enableDarkMode = () => {
-    console.log("enable");
     document.getElementById("primaryStyleSheet").setAttribute("href", "css/dark.css");
     localStorage.setItem("darkMode", "enabled");
 }
 
 const disableDarkMode = () => {
-    console.log("disable");
     document.getElementById("primaryStyleSheet").setAttribute("href", "css/light.css");
     localStorage.setItem("darkMode", "disabled");
 }
