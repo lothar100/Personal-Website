@@ -9,7 +9,7 @@
             <span></span>
         </div>
 
-        <div class="@NavCollapse rounded-bottom custom-topBar position-fixed mt-3" style="right:0;z-index:1" @onclick="ToggleNavMenu">
+        <div class="@NavCollapse @NavSlide custom-slideTray mt-3" @onclick="ToggleNavMenu">
             <ul class="nav flex-column">
 
                 <li class="nav-item px-3">
@@ -55,7 +55,9 @@
 @code {
     private bool isClosed = true;
 
-    private string NavCollapse => isClosed ? "collapse" : null;
+    private string NavCollapse = "collapse";
+
+    private string NavSlide => isClosed ? "slide-in" : "slide-out";
 
     private string NavOpen => isClosed ? null : "open";
 
@@ -66,6 +68,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         darkMode = await _JSRuntime.InvokeAsync<string>("darkMode.status", null);
+        NavCollapse = null; //collapsed until page loads, then sliding animation handles show/hide
     }
 
     private void ToggleNavMenu()

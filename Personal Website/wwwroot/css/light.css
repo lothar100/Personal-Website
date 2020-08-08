@@ -1,7 +1,13 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+:root {
+    --custom-white: rgba(248, 249, 250, 1);
+    --custom-gray: rgba(189, 193, 198, 1);
+    --custom-darkgray: rgba(30, 30, 31, 1);
+}
+
 a {
-    color: black;
+    color: #121212;
 }
 
 .animated-icon span {
@@ -9,9 +15,13 @@ a {
 }
 
 .custom-topBar {
-    background-color: white;
+    background-color: var(--custom-white);
+}
+
+.custom-slideTray {
+    background-color: var(--custom-white);
 }
 
 .form-control:focus {
-    border-color: black;
+    border-color: #121212;
 }

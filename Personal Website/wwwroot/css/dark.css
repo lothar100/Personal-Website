@@ -23,6 +23,10 @@ a {
     background-color: #121212;
 }
 
+.custom-slideTray {
+    background-color: #121212;
+}
+
 .card {
     background-color: var(--custom-darkgray);
     border-color: var(--custom-gray);
@@ -39,11 +43,11 @@ h3.card-title {
     background-color: black;
 }
 
-    .btn-outline-dark:hover {
-        color: black;
-        border-color: black;
-        background-color: var(--custom-white);
-    }
+.btn-outline-dark:hover {
+    color: black;
+    border-color: black;
+    background-color: var(--custom-white);
+}
 
 .form-control:focus {
     border-color: var(--custom-white);
