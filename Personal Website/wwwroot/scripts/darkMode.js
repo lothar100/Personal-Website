@@ -28,6 +28,10 @@ window.darkMode = {
         } else {
             enableDarkMode();
         }
+    },
+
+    status: function () {
+        return localStorage.getItem("darkMode");
     }
 
 }

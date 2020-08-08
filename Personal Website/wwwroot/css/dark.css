@@ -11,6 +11,14 @@ html, body {
     color: var(--custom-white);
 }
 
+a {
+    color: var(--custom-white);
+}
+
+.animated-icon span {
+    background-color: var(--custom-white);
+}
+
 .custom-topBar {
     background-color: #121212;
 }

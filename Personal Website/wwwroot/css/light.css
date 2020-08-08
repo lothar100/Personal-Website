@@ -1,9 +1,17 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-.form-control:focus {
-    border-color: black;
+a {
+    color: black;
+}
+
+.animated-icon span {
+    background-color: #121212;
 }
 
 .custom-topBar {
     background-color: white;
+}
+
+.form-control:focus {
+    border-color: black;
 }

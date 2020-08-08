@@ -5,7 +5,11 @@ html, body {
 }
 
 a {
-    color: white;
+    cursor: pointer;
+}
+
+a:hover {
+    color: dimgrey;
 }
 
 .btn:focus {
@@ -24,7 +28,7 @@ a {
 .custom-nav {
     position: absolute;
     bottom: 18px;
-    right: 0px;
+    right: 24px;
     z-index: 4;
 }
 
