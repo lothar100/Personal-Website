@@ -12,6 +12,10 @@ a:hover {
     color: dimgrey;
 }
 
+a:not([href]):not([tabindex]):hover {
+    color: dimgrey;
+}
+
 .btn:focus {
     outline: none;
     box-shadow: none;
