@@ -8,7 +8,7 @@
         content: attr(data-text);
         left: 0;
         top: 0;
-        text-shadow: -1px 0 cyan;
+        text-shadow: -1px 0 blue;
         pointer-events: none;
         overflow: hidden;
         animation: noise-1 5.25s infinite linear alternate-reverse;
@@ -19,7 +19,7 @@
         content: attr(data-text);
         left: 0;
         top: 0;
-        text-shadow: 1px 0 magenta;
+        text-shadow: 1px 0 red;
         overflow: hidden;
         pointer-events: none;
         animation: noise-2 2s infinite linear alternate-reverse;

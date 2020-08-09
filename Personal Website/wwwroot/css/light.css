@@ -1,27 +1,75 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 :root {
-    --custom-white: rgba(248, 249, 250, 1);
-    --custom-gray: rgba(189, 193, 198, 1);
-    --custom-darkgray: rgba(30, 30, 31, 1);
+    --custom-white: #f8f9faff;
+    --custom-gray: #bdc1c6ff;
+    --custom-darkgray: #1e1e1fff;
+    --custom-black: #121212;
+    /*Dark*/
+    --title-text: var(--custom-black);
+    --heading-text: var(--custom-black);
+    --menu-text: var(--custom-black);
+    --regular-text: var(--custom-black);
+    /*Warm Dark*/
+    /*Neutral*/
+    /*Warm Light*/
+    /*Light*/
+    --page-bg: var(--custom-white);
+    --topbar-bg: var(--custom-white);
+    --card-bg: var(--custom-white);
+    /*button primary*/
+    --button-bg: var(--custom-white);
+    --button-text-hover: var(--custom-white);
+    --button-outline-hover: var(--custom-white);
+    /*button secondary*/
+    --button-bg-hover: var(--custom-black);
+    --button-text: var(--custom-black);
+    --button-outline: var(--custom-black);
+}
+
+html, body {
+    background-color: var(--page-bg);
+    color: var(--title-text);
 }
 
 a {
-    color: #121212;
+    color: var(--menu-text);
 }
 
 .animated-icon span {
-    background-color: #121212;
+    background-color: var(--menu-text);
 }
 
 .custom-topBar {
-    background-color: var(--custom-white);
+    background-color: var(--topbar-bg);
+}
+
+.custom-topBar {
+    background-color: var(--topbar-bg);
 }
 
 .custom-slideTray {
-    background-color: var(--custom-white);
+    background-color: var(--page-bg);
 }
 
-.form-control:focus {
-    border-color: #121212;
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--regular-text);
+    color: var(--regular-text);
 }
+
+h3.card-title {
+    color: var(--heading-text);
+}
+
+.btn-outline-dark {
+    color: var(--button-text);
+    background-color: var(--button-bg);
+    border-color: var(--button-outline);
+}
+
+    .btn-outline-dark:hover {
+        color: var(--button-text-hover);
+        background-color: var(--button-bg-hover);
+        border-color: black;
+    }

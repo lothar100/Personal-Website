@@ -1,53 +1,74 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 :root {
-    --custom-white: rgba(248, 249, 250, 1);
-    --custom-gray: rgba(189, 193, 198, 1);
-    --custom-darkgray: rgba(30, 30, 31, 1);
+    --custom-white: #f8f9faff;
+    --custom-gray: #bdc1c6ff;
+    --custom-darkgray: #1e1e1fff;
+    --custom-black: #121212;
+
+    /*Dark*/
+    --topbar-bg: var(--custom-black);
+    --page-bg: var(--custom-black);
+    /*Warm Dark*/
+    --card-bg: var(--custom-darkgray);
+    /*Neutral*/
+    --regular-text: var(--custom-grey);
+    /*Warm Light*/
+    /*Light*/
+    --title-text: var(--custom-white);
+    --heading-text: var(--custom-white);
+    --menu-text: var(--custom-white);
+    /*button primary*/
+    --button-bg: var(--custom-black);
+    --button-text-hover: var(--custom-black);
+    --button-outline-hover: var(--custom-black);
+    /*button secondary*/
+    --button-bg-hover: var(--custom-white);
+    --button-text: var(--custom-white);
+    --button-outline: var(--custom-white);
 }
 
 html, body {
-    background-color: #121212;
-    color: var(--custom-white);
+    background-color: var(--page-bg);
+    color: var(--title-text);
+    /*background-image: linear-gradient(170deg, transparent, transparent, transparent, transparent, rgba(112,75,134,0.5));*/
 }
 
 a {
-    color: var(--custom-white);
+    color: var(--menu-text);
 }
 
 .animated-icon span {
-    background-color: var(--custom-white);
+    background-color: var(--menu-text);
 }
 
 .custom-topBar {
-    background-color: #121212;
+    background-color: var(--topbar-bg);
+    /*background-image: linear-gradient(-10deg, transparent 0%, transparent 80%, rgba(14,194,201,0.5) 100%);*/
 }
 
 .custom-slideTray {
-    background-color: #121212;
+    background-color: var(--page-bg);
 }
 
 .card {
-    background-color: var(--custom-darkgray);
-    border-color: var(--custom-gray);
-    color: var(--custom-gray);
+    background-color: var(--card-bg);
+    border-color: var(--regular-text);
+    color: var(--regular-text);
 }
 
 h3.card-title {
-    color: var(--custom-white);
+    color: var(--heading-text);
 }
 
 .btn-outline-dark {
-    color: var(--custom-white);
-    background-color: black;
+    color: var(--button-text);
+    background-color: var(--button-bg);
+    border-color: var(--button-outline);
 }
 
-.btn-outline-dark:hover {
-    color: black;
-    border-color: black;
-    background-color: var(--custom-white);
-}
-
-.form-control:focus {
-    border-color: var(--custom-white);
-}
+    .btn-outline-dark:hover {
+        color: var(--button-text-hover);
+        background-color: var(--button-bg-hover);
+        border-color: black;
+    }
