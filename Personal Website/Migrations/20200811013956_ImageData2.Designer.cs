@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Personal_Website.Data.Context;
 
 namespace Personal_Website.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200811013956_ImageData2")]
+    partial class ImageData2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,16 +27,16 @@ namespace Personal_Website.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ImageCSS")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ImageCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ImageHeight")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ImageType")
+                    b.Property<int>("ImageWidth")
                         .HasColumnType("int");
 
                     b.Property<string>("Summary")

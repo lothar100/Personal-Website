@@ -3,22 +3,49 @@
 
 @if (IsAdminView == false)
 {
-    @if (Model.IsEmpty() == false)
+    @if (Model.HasContent())
     {
         <div class="container pb-3">
-            <div class="card" style="max-width: 90rem">
-                <div class="card-body">
-                    @if (string.IsNullOrWhiteSpace(Model.Title) == false)
-                    {
-                    <h3 class="card-title">@((MarkupString)Model.Title)</h3>
-                    }
+            <div class="row">
 
-                    @if (string.IsNullOrWhiteSpace(Model.Summary) == false)
-                    {
-                <p class="card-text">@((MarkupString)Model.Summary)</p>
-                    }
-                </div>
+
+                @if (Model.ImageCount == 1 && Model.ImageType == (int)Enums.ImageTypes.Outside)
+                {
+                    <div class="@colType">
+                        <img class="@Model.ImageCSS" src="./images/@Model.ImageName">
+                    </div>
+                }
+
+
+                @if (Model.HasCardContent())
+                {
+                    <div class="col">
+                        <div class="card" style="max-width: 90rem">
+
+                            @if (Model.ImageCount == 1 && Model.ImageType == (int)Enums.ImageTypes.Inside)
+                            {
+                                <img class="card-img-top @Model.ImageCSS" src="./images/@Model.ImageName">
+                            }
+
+                            <div class="card-body">
+                                @if (string.IsNullOrWhiteSpace(Model.Title) == false)
+                                {
+                                    <h3 class="card-title">@((MarkupString)Model.Title)</h3>
+                                }
+
+                                @if (string.IsNullOrWhiteSpace(Model.Summary) == false)
+                                {
+                                    <p class="card-text">@((MarkupString)Model.Summary)</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
             </div>
+        
+        
         </div>
     }
 }
@@ -28,16 +55,42 @@ else
         <Authorized Context="Auth">
 
             <div class="container pb-3">
-                <div class="card" style="max-width: 90rem">
-                    <div class="card-body">
-                        <EditForm Model="@Model" OnValidSubmit="Save">
-                            <div><InputText type="text" class="card-title form-control form-control-lg" @bind-Value="@Model.Title"></InputText></div>
-                            <div><InputTextArea type="text" class="card-text form-control" rows="@Model.SummaryRows" style="resize:none; white-space:pre; overflow-wrap:normal;" @bind-Value="@Model.Summary"  @oninput="BindSummary"></InputTextArea></div>
-                            <div class="pt-2">
-                                <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>
+                <div class="row">
+                    @if (Model.ImageCount == 1 && Model.ImageType == (int)Enums.ImageTypes.Outside)
+                    {
+                        <div class="col-md-auto">
+                            <img class="@Model.ImageCSS" src="./images/@Model.ImageName">
+                        </div>
+                    }
+                    <div class="col">
+                        <div class="card" style="max-width: 90rem">
+
+                            @if (Model.ImageCount == 1 && Model.ImageType == (int)Enums.ImageTypes.Inside)
+                            {
+                                <img class="card-img-top @Model.ImageCSS" src="./images/@Model.ImageName">
+                            }
+
+                            <div class="card-body">
+                                <EditForm Model="@Model" OnValidSubmit="Save">
+                                    <small>title</small>
+                                    <div><InputText type="text" class="card-title form-control form-control-lg" @bind-Value="@Model.Title"></InputText></div>
+                                    <small>summary</small>
+                                    <div><InputTextArea type="text" class="card-text form-control" rows="@Model.SummaryRows" style="resize:none; white-space:pre; overflow-wrap:normal;" @bind-Value="@Model.Summary" @oninput="BindSummary"></InputTextArea></div>
+                                    <small>image count (0-1)</small>
+                                    <div><InputNumber type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageCount"></InputNumber></div>
+                                    <small>image type (1-2)</small>
+                                    <div><InputNumber type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageType"></InputNumber></div>
+                                    <small>image name</small>
+                                    <div><InputText type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageName"></InputText></div>
+                                    <small>image css</small>
+                                    <div><InputText type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageCSS"></InputText></div>
+                                    <div class="pt-2">
+                                        <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
+                                        <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>
+                                    </div>
+                                </EditForm>
                             </div>
-                        </EditForm>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,6 +107,8 @@ else
 
     [Parameter]
     public bool? IsAdminView { get; set; }
+
+    private string colType => Model.HasCardContent() ? "col-md-auto" : "col";
 
     private async void Save()
     {
