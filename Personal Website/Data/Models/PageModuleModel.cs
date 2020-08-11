@@ -35,6 +35,11 @@ namespace Personal_Website.Data.Models {
 
         private void ResizeSummaryRows(string value)
         {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                SummaryRows = 1;
+                return;
+            }
             SummaryRows = value.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length;
         }
     }
