@@ -10,9 +10,10 @@ namespace Personal_Website.Data.Models {
 
         [Key]
         public int Id { get; set; }
+        public int SortId { get; set; }
         public int Type { get; set; }
         public int ImageCount { get; set; }
-        public int ImageType { get; set; } = (int)Enums.ImageTypes.Inside;
+        public int ImageType { get; set; }
         public string ImageName { get; set; }
         public string ImageCSS { get; set; }
         public string Title { get; set; }

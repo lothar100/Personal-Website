@@ -5,6 +5,7 @@ using Personal_Website.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Personal_Website.Data.Services {
@@ -22,9 +23,23 @@ namespace Personal_Website.Data.Services {
             return await _context.Modules.ToListAsync();
         }
 
+        public async Task<PageModuleModel> GetPrev(int sortId)
+        {
+            return await _context.Modules
+                .OrderByDescending(module => module.SortId)
+                .FirstOrDefaultAsync(module => module.SortId < sortId);
+        }
+
         public async Task<PageModuleModel> Get(int id)
         {
             return await _context.Modules.FindAsync(id);
+        }
+
+        public async Task<PageModuleModel> GetNext(int sortId)
+        {
+            return await _context.Modules
+                .OrderBy(module => module.SortId)
+                .FirstOrDefaultAsync(module => module.SortId > sortId);
         }
 
         public async Task<int> AddOrUpdate(PageModuleModel pageModule)

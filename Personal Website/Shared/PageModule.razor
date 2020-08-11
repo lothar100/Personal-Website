@@ -84,10 +84,24 @@ else
                                     <div><InputText type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageName"></InputText></div>
                                     <small>image css</small>
                                     <div><InputText type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageCSS"></InputText></div>
-                                    <div class="pt-2">
-                                        <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
-                                        <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>
+
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="pt-2">
+                                                <button type="submit" class="btn btn-outline-dark btn-sm">Save</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" @onclick="Delete">Delete</button>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="pt-2">
+                                                <button type="button" class="btn btn-outline-dark btn-sm" @onclick="MoveUp">Move Up</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" @onclick="MoveDown">MoveDown</button>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    
                                 </EditForm>
                             </div>
                         </div>
@@ -125,5 +139,37 @@ else
     private void BindSummary(ChangeEventArgs e)
     {
         Model.Summary = e.Value.ToString();
+    }
+
+    private async void MoveUp()
+    {
+        var upperModel = await _Service.GetPrev(Model.SortId);
+
+        if (upperModel == null) return;
+
+        var currentId = Model.SortId;
+        Model.SortId = upperModel.SortId;
+        upperModel.SortId = currentId;
+
+        await _Service.AddOrUpdate(Model);
+        await _Service.AddOrUpdate(upperModel);
+
+        _NavigationManager.NavigateTo("refresh");
+    }
+
+    private async void MoveDown()
+    {
+        var lowerModel = await _Service.GetNext(Model.SortId);
+
+        if (lowerModel == null) return;
+
+        var currentId = Model.SortId;
+        Model.SortId = lowerModel.SortId;
+        lowerModel.SortId = currentId;
+
+        await _Service.AddOrUpdate(Model);
+        await _Service.AddOrUpdate(lowerModel);
+
+        _NavigationManager.NavigateTo("refresh");
     }
 }

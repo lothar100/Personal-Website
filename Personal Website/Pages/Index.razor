@@ -31,7 +31,7 @@ else
 
     </AuthorizeView>
 
-    @foreach (var model in Modules)
+    @foreach (var model in Modules.OrderBy(module => module.SortId))
     {
         <PageModule Model="model" IsAdminView="@_SessionState.IsAdminView" />
     }
