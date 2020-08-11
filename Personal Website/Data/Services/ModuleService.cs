@@ -42,6 +42,15 @@ namespace Personal_Website.Data.Services {
                 .FirstOrDefaultAsync(module => module.SortId > sortId);
         }
 
+        public int GetNextId()
+        {
+            return  _context.Modules
+                .OrderByDescending(module => module.Id)
+                .Select(module => module.Id)
+                .First()
+                + 1;
+        }
+
         public async Task<int> AddOrUpdate(PageModuleModel pageModule)
         {
             if (Exists(pageModule.Id))
@@ -50,6 +59,7 @@ namespace Personal_Website.Data.Services {
             }
             else
             {
+                pageModule.SortId = GetNextId();
                 return await Insert(pageModule);
             }
         }
