@@ -16,6 +16,7 @@ namespace Personal_Website.Data.Models {
         public int ImageType { get; set; }
         public string ImageName { get; set; }
         public string ImageCSS { get; set; }
+        public string VideoSrc { get; set; }
         public string Title { get; set; }
         public string Summary
         {

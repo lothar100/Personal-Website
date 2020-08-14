@@ -11,7 +11,6 @@
 else
 {
     <AuthorizeView>
-
         <Authorized>
             @if (_SessionState.IsAdminView == true)
             {
@@ -28,7 +27,6 @@ else
                 </div>
             }
         </Authorized>
-
     </AuthorizeView>
 
     @foreach (var model in Modules.OrderBy(module => module.SortId))

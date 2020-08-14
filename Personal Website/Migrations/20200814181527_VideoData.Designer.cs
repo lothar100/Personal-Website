@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Personal_Website.Data.Context;
 
 namespace Personal_Website.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200814181527_VideoData")]
+    partial class VideoData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +51,16 @@ namespace Personal_Website.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
+                    b.Property<string>("VideoCSS")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoHeight")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("VideoSrc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoWidth")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

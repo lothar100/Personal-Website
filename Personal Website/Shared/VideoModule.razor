@@ -1,0 +1,13 @@
+﻿
+@if (string.IsNullOrWhiteSpace(Model.VideoSrc) == false)
+{
+    <div class="videoWrapper">
+        <iframe class="video" src="@Model.VideoSrc" frameborder="0" allow="encrypted-media; accelerometer; gyroscope; picture-in-picture"></iframe>
+    </div>
+    
+}
+
+@code {
+    [Parameter]
+    public PageModuleModel Model { get; set; }
+}

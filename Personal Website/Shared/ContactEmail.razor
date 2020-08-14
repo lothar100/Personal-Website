@@ -9,7 +9,8 @@
             <div class="card" style="max-width: 90rem">
                 <div class="card-body">
                     <h3 class="card-title">Contact Me</h3>
-                    <EditForm Model="@Model" OnValidSubmit="SendEmail" @onkeydown="ClearSuccessMessage">
+                    <EditForm Model="@Model" OnValidSubmit="SendEmail" @onkeydown="ClearMessages">
+                        <DataAnnotationsValidator />
 
                         <div class="pl-1 pt-2">
                             <label class="mb-1" for="name">
@@ -17,7 +18,11 @@
                                 @Helper.DisplayNameFor(typeof(ContactEmailModel), "Name")
                             </label>
                         </div>
-                        <div><InputText class="card-text form-control form-control-sm" style="max-width:576px" type="text" id="name" placeholder="Enter Name" @bind-Value="@Model.Name"></InputText></div>
+                        <div>
+                            <InputText class="card-text form-control form-control-sm" style="max-width:576px" type="text" id="name" placeholder="Enter Name" @bind-Value="@Model.Name"></InputText>
+                            <ValidationMessage For="@(() => Model.Name)" />
+                        </div>
+                        
 
                         <div class="pl-1 pt-2">
                             <label class="mb-1" for="name">
@@ -25,7 +30,12 @@
                                 @Helper.DisplayNameFor(typeof(ContactEmailModel), "EmailAddress")
                             </label>
                         </div>
-                        <div><InputText class="card-text form-control form-control-sm" style="max-width:576px" type="text" id="email" placeholder="Enter Email" @bind-Value="@Model.EmailAddress"></InputText></div>
+                        <div>
+                            <InputText class="card-text form-control form-control-sm" style="max-width:576px" type="text" id="email" placeholder="Enter Email" @bind-Value="@Model.EmailAddress"></InputText>
+                            <ValidationMessage For="@(() => Model.EmailAddress)" />
+                        </div>
+                        
+
 
                         <div class="pl-1 pt-2">
                             <label class="mb-1" for="name">
@@ -33,11 +43,15 @@
                                 @Helper.DisplayNameFor(typeof(ContactEmailModel), "Message")
                             </label>
                         </div>
-                        <div><InputTextArea class="card-text form-control form-control-sm" style="max-width:576px; resize:none; white-space:pre; overflow-wrap:normal;" type="text" id="message" placeholder="Type Your Message" rows="@Model.MessageRows" @bind-Value="@Model.Message" @oninput="BindMessage"></InputTextArea></div>
+                        <div>
+                            <InputTextArea class="card-text form-control form-control-sm custom-textarea" type="text" id="message" placeholder="Type Your Message" rows="@Model.MessageRows" @bind-Value="@Model.Message" @oninput="BindMessage"></InputTextArea>
+                            <ValidationMessage For="@(() => Model.Message)" />
+                        </div>
 
                         <div class="pt-2">
                             <button type="submit" class="btn btn-outline-dark btn-sm">Send</button>
-                            <AlertText Class="success" Text="@SuccessMessage"/>
+                            <AlertText Class="success" Text="@SuccessMessage" />
+                            <AlertText Class="warning" Text="@StatusMessage" />
                         </div>
                     </EditForm>
                 </div>
@@ -50,6 +64,7 @@
 
 @code {
     string SuccessMessage;
+    string StatusMessage;
     ContactEmailModel Model = new ContactEmailModel();
 
     private void BindMessage(ChangeEventArgs e)
@@ -57,8 +72,10 @@
         Model.Message = e.Value.ToString();
     }
 
-    private async Task SendEmail()
+    private void SendEmail()
     {
+        StatusMessage = "Sending...";
+
         Model.RemoteIPAddress = _HttpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
 
         MailMessage mailMessage = new MailMessage()
@@ -84,12 +101,14 @@
 
     private void UpdateAfterSend()
     {
+        StatusMessage = null;
         Model = new ContactEmailModel();
         SuccessMessage = "Email Sent";
     }
 
-    private void ClearSuccessMessage()
+    private void ClearMessages()
     {
         SuccessMessage = null;
+        StatusMessage = null;
     }
 }

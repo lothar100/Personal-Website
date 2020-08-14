@@ -1,0 +1,11 @@
+﻿@if (Model.ImageCount == 1 && Model.ImageType == (int)Enums.ImageTypes.Outside)
+{
+    <div class="col-md-auto">
+        <img class="@Model.ImageCSS" src="./images/@Model.ImageName">
+    </div>
+}
+
+@code {
+    [Parameter]
+    public PageModuleModel Model { get; set; }
+}

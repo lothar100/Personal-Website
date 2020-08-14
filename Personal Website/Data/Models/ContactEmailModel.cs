@@ -12,6 +12,7 @@ namespace Personal_Website.Data.Models {
         public string Name { get; set; }
 
         [Required]
+        [EmailAddress]
         [Display(Name = " Email")]
         public string EmailAddress { get; set; }
 

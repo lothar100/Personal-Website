@@ -1,0 +1,9 @@
+﻿@if (Model.ImageCount == 1 && Model.ImageType == (int)Enums.ImageTypes.Inside)
+{
+    <img class="card-img-top @Model.ImageCSS" src="./images/@Model.ImageName">
+}
+
+@code {
+    [Parameter]
+    public PageModuleModel Model { get; set; }
+}
