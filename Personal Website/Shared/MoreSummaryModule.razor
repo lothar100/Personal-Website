@@ -1,0 +1,22 @@
+﻿@if (string.IsNullOrWhiteSpace(Model.Summary) == false)
+{
+    <p class="card-text @Collapse">@((MarkupString)Model.Summary)</p>
+    
+    <p @onclick="ToggleCollapse">
+        <CardCollapseButton Text="@ButtonText" Model="@Model" />
+    </p>
+}
+
+@code {
+    [Parameter]
+    public PageModuleModel Model { get; set; }
+
+    private string ButtonText => IsClosed ? "Show More" : "Show Less";
+    private string Collapse => IsClosed ? "collapse" : null;
+    private bool IsClosed = true;
+
+    private void ToggleCollapse()
+    {
+        IsClosed = !IsClosed;
+    }
+}
