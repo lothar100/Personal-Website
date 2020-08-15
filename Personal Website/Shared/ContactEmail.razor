@@ -44,7 +44,7 @@
                             </label>
                         </div>
                         <div>
-                            <InputTextArea class="card-text form-control form-control-sm custom-textarea" type="text" id="message" placeholder="Type Your Message" rows="@Model.MessageRows" @bind-Value="@Model.Message" @oninput="BindMessage"></InputTextArea>
+                            <InputTextArea class="card-text form-control form-control-sm custom-textarea" style="max-width:576px" type="text" id="message" placeholder="Type Your Message" rows="@Model.MessageRows" @bind-Value="@Model.Message" @oninput="BindMessage"></InputTextArea>
                             <ValidationMessage For="@(() => Model.Message)" />
                         </div>
 

@@ -16,27 +16,21 @@
                         <div class="card" style="max-width: 90rem">
 
                             <div class="card-body">
-                                @if (string.IsNullOrWhiteSpace(Model.Title) == false)
-                                {
-                                    <h3 class="card-title">@((MarkupString)Model.Title)</h3>
-                                }
+                                
+                                <TitleModule Model="@Model" />
 
-                                <InsideImageModule Model="@Model" />
+                                <ImageModule Model="@Model" />
+
                                 <VideoModule Model="@Model" />
 
-                                @if (string.IsNullOrWhiteSpace(Model.Summary) == false)
-                                {
-                                    <p class="card-text">@((MarkupString)Model.Summary)</p>
-                                }
+                                <SummaryModule Model="@Model" />
+
                             </div>
                         </div>
                     </div>
                 }
 
-
             </div>
-        
-        
         </div>
     }
 }
@@ -53,27 +47,27 @@ else
                     <div class="col">
                         <div class="card" style="max-width: 90rem">
 
-                            <InsideImageModule Model="@Model"/>
+                            <ImageModule Model="@Model"/>
 
                             <div class="card-body">
                                 <EditForm Model="@Model" OnValidSubmit="Save">
 
                                     <small>title</small>
-                                    <div><InputText type="text" class="card-title form-control form-control-lg" @bind-Value="@Model.Title"></InputText></div>
+                                    <div><InputText type="text" class="card-title form-control form-control-lg maxWidth288" @bind-Value="@Model.Title"></InputText></div>
                                     <small>summary</small>
-                                    <div><InputTextArea type="text" class="card-text form-control" rows="@Model.SummaryRows" style="resize:none; white-space:pre; overflow-wrap:normal;" @bind-Value="@Model.Summary" @oninput="BindSummary"></InputTextArea></div>
+                                    <div><InputTextArea type="text" class="card-text form-control custom-textarea" rows="@Model.SummaryRows" @bind-Value="@Model.Summary" @oninput="BindSummary"></InputTextArea></div>
                                     
                                     <small>image count (0-1)</small>
-                                    <div><InputNumber type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageCount"></InputNumber></div>
+                                    <div><InputNumber type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.ImageCount"></InputNumber></div>
                                     <small>image type (1-2)</small>
-                                    <div><InputNumber type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageType"></InputNumber></div>
+                                    <div><InputNumber type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.ImageType"></InputNumber></div>
                                     <small>image name</small>
-                                    <div><InputText type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageName"></InputText></div>
+                                    <div><InputText type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.ImageName"></InputText></div>
                                     <small>image css</small>
-                                    <div><InputText type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.ImageCSS"></InputText></div>
+                                    <div><InputText type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.ImageCSS"></InputText></div>
 
                                     <small>video src</small>
-                                    <div><InputText type="text" class="card-title form-control form-control-sm" @bind-Value="@Model.VideoSrc"></InputText></div>
+                                    <div><InputText type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.VideoSrc"></InputText></div>
 
                                     <div class="row">
                                         <div class="col">
@@ -85,7 +79,7 @@ else
                                         <div class="col">
                                             <div class="pt-2">
                                                 <button type="button" class="btn btn-outline-dark btn-sm" @onclick="MoveUp">Move Up</button>
-                                                <button type="button" class="btn btn-outline-dark btn-sm" @onclick="MoveDown">MoveDown</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" @onclick="MoveDown">Move Down</button>
                                             </div>
                                         </div>
                                     </div>

@@ -1,0 +1,9 @@
+﻿@if (string.IsNullOrWhiteSpace(Model.Title) == false)
+{
+    <h3 class="card-title">@((MarkupString)Model.Title)</h3>
+}
+
+@code {
+    [Parameter]
+    public PageModuleModel Model { get; set; }
+}

@@ -12,6 +12,7 @@ namespace Personal_Website.Classes.Extensions {
         {
             if (string.IsNullOrWhiteSpace(model.Title) == false) return true;
             if (string.IsNullOrWhiteSpace(model.Summary) == false) return true;
+            if (string.IsNullOrWhiteSpace(model.VideoSrc) == false) return true;
             if (model.ImageCount > 0) return true;
 
             return false;
@@ -21,6 +22,7 @@ namespace Personal_Website.Classes.Extensions {
         {
             if (string.IsNullOrWhiteSpace(model.Title) == false) return true;
             if (string.IsNullOrWhiteSpace(model.Summary) == false) return true;
+            if (string.IsNullOrWhiteSpace(model.VideoSrc) == false) return true;
             if (model.ImageCount > 0 && model.ImageType != (int)Enums.ImageTypes.Outside) return true;
 
             return false;

@@ -55,10 +55,13 @@ a:not([href]):not([tabindex]):hover {
 }
 
 .custom-textarea {
-    max-width: 576px;
     resize: none;
     white-space: pre;
     overflow-wrap: normal;
+}
+
+.maxWidth288 {
+    max-width: 288px;
 }
 
 .card {
