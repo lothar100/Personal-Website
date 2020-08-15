@@ -18,31 +18,7 @@ namespace Personal_Website.Data.Models {
         public string ImageCSS { get; set; }
         public string VideoSrc { get; set; }
         public string Title { get; set; }
-        public string Summary
-        {
-            get => _summary;
-
-            set
-            {
-                _summary = value;
-                ResizeSummaryRows(value);
-            }
-        }
-
-        [NotMapped]
-        private string _summary { get; set; }
-
-        [NotMapped]
-        public int SummaryRows { get; set; }
-
-        private void ResizeSummaryRows(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                SummaryRows = 1;
-                return;
-            }
-            SummaryRows = value.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length;
-        }
+        public string Summary { get; set; }
+        public string MoreSummary { get; set; }
     }
 }

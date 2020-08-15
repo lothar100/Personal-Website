@@ -67,7 +67,7 @@ a:not([href]):not([tabindex]):hover {
     --aug-tr-width: 10%;
     --aug-border-bg: none;
     --aug-inset: 2px;
-    --aug-inset-bg: black;
+    --aug-inset-bg: #121212;
     background: gold;
     width: 100px;
     margin: auto;

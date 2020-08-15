@@ -1,6 +1,6 @@
-﻿@if (string.IsNullOrWhiteSpace(Model.Summary) == false)
+﻿@if (string.IsNullOrWhiteSpace(Model.MoreSummary) == false)
 {
-    <p class="card-text @Collapse">@((MarkupString)Model.Summary)</p>
+    <p class="card-text @Collapse">@((MarkupString)Model.MoreSummary)</p>
     
     <p @onclick="ToggleCollapse">
         <CardCollapseButton Text="@ButtonText" Model="@Model" />

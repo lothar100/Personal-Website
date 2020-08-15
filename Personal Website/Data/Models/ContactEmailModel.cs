@@ -18,23 +18,7 @@ namespace Personal_Website.Data.Models {
 
         [Required]
         [Display(Name = " Message")]
-        public string Message {
-            get => _message;
-
-            set {
-                _message = value;
-                ResizeMessageRows(value);
-            }
-        }
-
-        private string _message { get; set; }
-
-        public int MessageRows { get; set; }
-
-        private void ResizeMessageRows(string value)
-        {
-            MessageRows = value.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length;
-        }
+        public string Message { get; set; }
 
         public string RemoteIPAddress { get; set; }
     }

@@ -57,8 +57,10 @@ else
                                     <small>title</small>
                                     <div><InputText type="text" class="card-title form-control form-control-lg maxWidth288" @bind-Value="@Model.Title"></InputText></div>
                                     <small>summary</small>
-                                    <div><InputTextArea type="text" class="card-text form-control custom-textarea" rows="@Model.SummaryRows" @bind-Value="@Model.Summary" @oninput="BindSummary"></InputTextArea></div>
-                                    
+                                    <div><InputTextArea type="text" class="card-text form-control custom-textarea" rows="@Model.Summary.RowCount()" @bind-Value="@Model.Summary" @oninput="BindSummary"></InputTextArea></div>
+                                    <small>more summary</small>
+                                    <div><InputTextArea type="text" class="card-text form-control custom-textarea" rows="@Model.MoreSummary.RowCount()" @bind-Value="@Model.MoreSummary" @oninput="BindMoreSummary"></InputTextArea></div>
+
                                     <small>image count (0-1)</small>
                                     <div><InputNumber type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.ImageCount"></InputNumber></div>
                                     <small>image type (1-2)</small>
@@ -123,6 +125,11 @@ else
     private void BindSummary(ChangeEventArgs e)
     {
         Model.Summary = e.Value.ToString();
+    }
+
+    private void BindMoreSummary(ChangeEventArgs e)
+    {
+        Model.MoreSummary = e.Value.ToString();
     }
 
     private async void MoveUp()
