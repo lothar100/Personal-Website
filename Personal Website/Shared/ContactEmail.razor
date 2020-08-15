@@ -72,9 +72,11 @@
         Model.Message = e.Value.ToString();
     }
 
-    private void SendEmail()
+    private async Task SendEmail()
     {
         StatusMessage = "Sending...";
+
+        await Task.Delay(100);
 
         Model.RemoteIPAddress = _HttpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
 
