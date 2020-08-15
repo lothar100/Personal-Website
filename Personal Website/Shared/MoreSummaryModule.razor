@@ -1,7 +1,13 @@
-﻿@if (string.IsNullOrWhiteSpace(Model.MoreSummary) == false)
+﻿@inject IJSRuntime _JSRuntime
+
+@if (string.IsNullOrWhiteSpace(Model.MoreSummary) == false && string.IsNullOrWhiteSpace(Model.MoreSummaryId) == false)
 {
-    <p class="card-text @Collapse">@((MarkupString)Model.MoreSummary)</p>
-    
+    if (StartingHeight == 0)
+    {
+        <p id="@Model.MoreSummaryId" class="card-text">@((MarkupString)Model.MoreSummary)</p>
+    }
+    <p class="card-text collapsing" style="@Style">@((MarkupString)Model.MoreSummary)</p>
+
     <p @onclick="ToggleCollapse">
         <CardCollapseButton Text="@ButtonText" Model="@Model" />
     </p>
@@ -12,11 +18,22 @@
     public PageModuleModel Model { get; set; }
 
     private string ButtonText => IsClosed ? "Show More" : "Show Less";
-    private string Collapse => IsClosed ? "collapse" : null;
     private bool IsClosed = true;
+    private string Style => IsClosed ? "height:0": $"height:{StartingHeight}px";
+    private int StartingHeight;
+    private string Collapsing = null;
 
     private void ToggleCollapse()
     {
         IsClosed = !IsClosed;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && string.IsNullOrWhiteSpace(Model.MoreSummaryId) == false)
+        {
+            StartingHeight = await _JSRuntime.InvokeAsync<int>("helper.getHeight", Model.MoreSummaryId);
+            StateHasChanged();
+        }
     }
 }
