@@ -60,6 +60,23 @@ a:not([href]):not([tabindex]):hover {
     overflow-wrap: normal;
 }
 
+.cardCollapse-button {
+    --aug-tl: 10px;
+    --aug-tl-width: 10%;
+    --aug-tr: 10px;
+    --aug-tr-width: 10%;
+    --aug-border-bg: none;
+    --aug-inset: 2px;
+    --aug-inset-bg: black;
+    background: gold;
+    width: 100px;
+    margin: auto;
+    padding: 2px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
 .maxWidth288 {
     max-width: 288px;
 }
@@ -90,6 +107,14 @@ input:focus {
 
 .form-control:focus {
     box-shadow: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .img-self {
