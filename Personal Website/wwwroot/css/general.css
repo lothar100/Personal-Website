@@ -75,6 +75,7 @@ a:not([href]):not([tabindex]):hover {
     font-size: 14px;
     text-align: center;
     cursor: pointer;
+    z-index : 1;
 }
 
 .maxWidth288 {
@@ -107,6 +108,41 @@ input:focus {
 
 .form-control:focus {
     box-shadow: none;
+}
+
+.more-summary {
+    --aug-inset: 2px;
+    --aug-inset-bg: #121212;
+}
+
+.more-opening {
+    position: relative;
+    overflow: hidden;
+    transition: height 1s ease;
+    transition-delay: .5s;
+    margin: auto;
+}
+
+.more-closing {
+    position: relative;
+    overflow: hidden;
+    transition: height 1s ease, width .5s ease;
+    margin: auto;
+}
+
+.more-transition {
+    position: relative;
+    overflow: hidden;
+    transition: height .7s ease, width .5s ease;
+}
+
+.area-transition {
+    position: relative;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    transition: height .7s ease, width .5s ease;
+    margin: auto;
 }
 
 .noselect {
