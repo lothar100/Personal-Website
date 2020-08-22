@@ -52,6 +52,7 @@
                             <button type="submit" class="btn btn-outline-dark btn-sm">Send</button>
                             <AlertText Class="success" Text="@SuccessMessage" />
                             <AlertText Class="warning" Text="@StatusMessage" />
+                            <AlertText Class="danger" Text="@ErrorMessage" />
                         </div>
                     </EditForm>
                 </div>
@@ -65,6 +66,8 @@
 @code {
     string SuccessMessage;
     string StatusMessage;
+    string ErrorMessage;
+
     ContactEmailModel Model = new ContactEmailModel();
 
     private void BindMessage(ChangeEventArgs e)
@@ -97,12 +100,22 @@
         };
         mailMessage.To.Add(new MailAddress("infrared.skittle@gmail.com"));
 
-        _SmtpClient.Send(mailMessage);
-        UpdateAfterSend();
+        try
+        {
+            _SmtpClient.Send(mailMessage);
+            UpdateAfterSend();
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = null;
+            ErrorMessage = "Error. Email failed to send.";
+        }
+
     }
 
     private void UpdateAfterSend()
     {
+        ErrorMessage = null;
         StatusMessage = null;
         Model = new ContactEmailModel();
         SuccessMessage = "Email Sent";
@@ -112,5 +125,6 @@
     {
         SuccessMessage = null;
         StatusMessage = null;
+        ErrorMessage = null;
     }
 }
