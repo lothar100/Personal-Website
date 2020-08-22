@@ -105,7 +105,7 @@
             _SmtpClient.Send(mailMessage);
             UpdateAfterSend();
         }
-        catch (Exception ex)
+        catch
         {
             StatusMessage = null;
             ErrorMessage = "Error. Email failed to send.";

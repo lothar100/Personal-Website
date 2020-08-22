@@ -115,31 +115,14 @@ input:focus {
     --aug-inset-bg: #121212;
 }
 
-.more-opening {
-    position: relative;
-    overflow: hidden;
-    transition: height 1s ease;
-    transition-delay: .5s;
-    margin: auto;
-}
-
-.more-closing {
-    position: relative;
-    overflow: hidden;
-    transition: height 1s ease, width .5s ease;
-    margin: auto;
-}
-
 .more-transition {
     position: relative;
     overflow: hidden;
-    transition: height .7s ease, width .5s ease;
+    transition: height .7s ease, width .5s ease, padding .7s ease;
 }
 
 .area-transition {
     position: relative;
-    height: 0;
-    width: 0;
     overflow: hidden;
     transition: height .7s ease, width .5s ease;
     margin: auto;
