@@ -5,6 +5,8 @@
     --custom-gray: #bdc1c6ff;
     --custom-darkgray: #1e1e1fff;
     --custom-black: #121212;
+    --custom-border: #f82bde;
+    --custom-bg: #90faff;
     /*Dark*/
     --title-text: var(--custom-black);
     --heading-text: var(--custom-black);
@@ -50,6 +52,15 @@ a {
 
 .custom-slideTray {
     background-color: var(--page-bg);
+}
+
+.cardCollapse-button {
+    --aug-inset-bg: var(--custom-bg);
+    background: var(--custom-border);
+}
+
+.more-summary {
+    --aug-inset-bg: var(--custom-bg);
 }
 
 .card {

@@ -5,7 +5,7 @@
     --custom-gray: #bdc1c6ff;
     --custom-darkgray: #1e1e1fff;
     --custom-black: #121212;
-
+    --sunglow: #FFCB1D;
     /*Dark*/
     --topbar-bg: var(--custom-black);
     --page-bg: var(--custom-black);
@@ -31,7 +31,6 @@
 html, body {
     background-color: var(--page-bg);
     color: var(--title-text);
-    /*background-image: linear-gradient(170deg, transparent, transparent, transparent, transparent, rgba(112,75,134,0.5));*/
 }
 
 a {
@@ -44,11 +43,19 @@ a {
 
 .custom-topBar {
     background-color: var(--topbar-bg);
-    /*background-image: linear-gradient(-10deg, transparent 0%, transparent 80%, rgba(14,194,201,0.5) 100%);*/
 }
 
 .custom-slideTray {
     background-color: var(--page-bg);
+}
+
+.cardCollapse-button {
+    --aug-inset-bg: var(--page-bg);
+    background: gold;
+}
+
+.more-summary {
+    --aug-inset-bg: var(--page-bg);
 }
 
 .card {
