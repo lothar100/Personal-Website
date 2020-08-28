@@ -65,15 +65,39 @@ a:not([href]):not([tabindex]):hover {
     --aug-tl-width: 10%;
     --aug-tr: 10px;
     --aug-tr-width: 10%;
-    --aug-border-bg: none;
-    --aug-inset: 2px;
     width: 100px;
     margin: auto;
     padding: 2px;
     font-size: 14px;
     text-align: center;
     cursor: pointer;
-    z-index : 1;
+    z-index: 1;
+    position: absolute;
+    left: calc( 50% - 50px);
+    transform: translateY(-23px);
+}
+
+.button-placeholder {
+    width: 100px;
+    height: 25px;
+}
+
+.more-summary {
+    --aug-tl: 10px;
+    --aug-tr: 10px;
+}
+
+.more-transition {
+    position: relative;
+    overflow: hidden;
+    transition: height .7s ease, width .5s ease, padding .7s ease;
+}
+
+.area-transition {
+    position: relative;
+    overflow: hidden;
+    transition: height .7s ease, width .5s ease;
+    margin: auto;
 }
 
 .maxWidth288 {
@@ -106,23 +130,6 @@ input:focus {
 
 .form-control:focus {
     box-shadow: none;
-}
-
-.more-summary {
-    --aug-inset: 2px;
-}
-
-.more-transition {
-    position: relative;
-    overflow: hidden;
-    transition: height .7s ease, width .5s ease, padding .7s ease;
-}
-
-.area-transition {
-    position: relative;
-    overflow: hidden;
-    transition: height .7s ease, width .5s ease;
-    margin: auto;
 }
 
 .noselect {

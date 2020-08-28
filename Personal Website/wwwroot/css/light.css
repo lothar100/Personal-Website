@@ -55,12 +55,16 @@ a {
 }
 
 .cardCollapse-button {
-    --aug-inset-bg: var(--custom-bg);
-    background: var(--custom-border);
+    --aug-border: 2px;
+    --aug-border-bg: var(--custom-black);
+    --aug-inset-bg: var(--page-bg);
+    z-index: 2;
 }
 
 .more-summary {
-    --aug-inset-bg: var(--custom-bg);
+    --aug-border: 1px;
+    --aug-border-bg: black;
+    --aug-inset-bg: var(--page-bg);
 }
 
 .card {

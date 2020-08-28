@@ -50,8 +50,10 @@ a {
 }
 
 .cardCollapse-button {
+    --aug-inset-bg: 2px;
     --aug-inset-bg: var(--page-bg);
-    background: gold;
+    --aug-border: 2px;
+    --aug-border-bg: gold;
 }
 
 .more-summary {

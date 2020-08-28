@@ -8,18 +8,16 @@
     <div id="@Model.MoreSummaryId-area" class="more-summary @AreaTransition" style="visibility: hidden; position:absolute;" augmented-ui="tl-clip tr-clip exe">
         <p id="@Model.MoreSummaryId" class="card-text @MoreTransition" style="margin: auto; padding: 20px 20px 0px;">@((MarkupString)Model.MoreSummary)</p>
 
-        <p>
-            <CardCollapseButton Text="@ButtonText" Model="@Model" />
-        </p>
+        <div class="button-placeholder"></div>
     </div>
 
     <div class="more-summary @AreaTransition" style="@AreaStyle" augmented-ui="tl-clip tr-clip exe">
         <p class="card-text @MoreTransition" style="@MoreStyle">@((MarkupString)Model.MoreSummary)</p>
-
-        <p @onclick="ToggleCollapse">
-            <CardCollapseButton Text="@ButtonText" Model="@Model" />
-        </p>
     </div>
+
+    <p @onclick="ToggleCollapse">
+        <CardCollapseButton Text="@ButtonText" Model="@Model" />
+    </p>
 }
 
 @code {
@@ -47,8 +45,7 @@
             {
                 IsClosed = !IsClosed;
                 await UpdateComponents();
-            }
-            finally
+            } finally
             {
                 UpdateLock.Release();
             }
@@ -61,9 +58,9 @@
         {
             //-- closing task
             MoreStyle = "height: 0px; margin: auto;";
-            AreaStyle = $"height: 25px; width: 100%";
+            AreaStyle = $"height: 20px; width: 100%";
             await Task.Delay(720);
-            AreaStyle = "height: 25px; width: 200px";
+            AreaStyle = "height: 20px; width: 200px";
         }
         else
         {
@@ -86,8 +83,7 @@
                 AreaHeight = await _JSRuntime.InvokeAsync<int>("helper.getHeight", Model.MoreSummaryId + "-area");
                 await UpdateComponents();
                 StateHasChanged();
-            }
-            finally
+            } finally
             {
                 UpdateLock.Release();
             }
