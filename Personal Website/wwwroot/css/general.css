@@ -82,6 +82,12 @@ a:not([href]):not([tabindex]):hover {
     height: 25px;
 }
 
+.badge-pill {
+    margin-top: -18px;
+    margin-left: 5px;
+    font-weight: lighter;
+}
+
 .more-summary {
     --aug-tl: 10px;
     --aug-tr: 10px;
@@ -112,6 +118,7 @@ a:not([href]):not([tabindex]):hover {
 .card-title {
     font-family: "CODE";
     font-weight: bold;
+    display: inline-block;
 }
 
 input.card-title {

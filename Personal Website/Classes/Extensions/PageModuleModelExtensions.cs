@@ -28,5 +28,18 @@ namespace Personal_Website.Classes.Extensions {
             return false;
         }
 
+        public static IEnumerable<(string Style, string Text)> ParseBadges(this PageModuleModel model)
+        {
+            if (string.IsNullOrWhiteSpace(model.Badges)) yield return ("danger", "Error-Parsing-Badge-Data");
+
+            var splitBadges = model.Badges.Split(',');
+
+            foreach(var badge in model.Badges.Split(','))
+            {
+                var info = badge.Split(':');
+                yield return (info[0], info[1]);
+            }
+        }
+
     }
 }

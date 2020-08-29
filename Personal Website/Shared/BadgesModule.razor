@@ -1,0 +1,13 @@
+﻿
+@if (string.IsNullOrWhiteSpace(Model.Badges) == false)
+{
+    @foreach (var badgeInfo in Model.ParseBadges())
+    {
+        <span class="badge badge-pill badge-@badgeInfo.Style align-middle">@badgeInfo.Text</span>
+    }
+}
+
+@code {
+    [Parameter]
+    public PageModuleModel Model { get; set; }
+}

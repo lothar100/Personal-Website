@@ -1,6 +1,7 @@
-﻿@if (string.IsNullOrWhiteSpace(Model.Title) == false)
+﻿
+@if (string.IsNullOrWhiteSpace(Model.Title) == false)
 {
-    <h3 class="card-title">@((MarkupString)Model.Title)</h3>
+    <span class="h3 align-middle card-title">@((MarkupString)Model.Title)</span>
 }
 
 @code {
