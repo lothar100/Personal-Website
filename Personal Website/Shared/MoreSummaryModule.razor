@@ -57,14 +57,16 @@
         if (IsClosed)
         {
             //-- closing task
-            MoreStyle = "height: 0px; margin: auto;";
+            MoreStyle = "height: 0px; padding: 20px 20px 0px;";
             AreaStyle = $"height: 20px; width: 100%";
             await Task.Delay(720);
+            MoreStyle = "height: 0px; margin: auto;";
             AreaStyle = "height: 20px; width: 200px";
         }
         else
         {
             //-- opening task
+            MoreStyle = $"height: 20px; padding: 20px 20px 0px;";
             AreaStyle = $"height: 25px; width: 100%";
             await Task.Delay(520);
             MoreStyle = $"height: {MoreHeight}px; padding: 20px 20px 0px;";
