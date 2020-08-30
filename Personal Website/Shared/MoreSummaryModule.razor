@@ -6,7 +6,7 @@
 @if (string.IsNullOrWhiteSpace(Model.MoreSummary) == false && string.IsNullOrWhiteSpace(Model.MoreSummaryId) == false)
 {
     <div id="@Model.MoreSummaryId-area" class="more-summary @AreaTransition" style="visibility: hidden; position:absolute;" augmented-ui="tl-clip tr-clip exe">
-        <p id="@Model.MoreSummaryId" class="card-text @MoreTransition" style="margin: auto; padding: 20px 20px 0px;">@((MarkupString)Model.MoreSummary)</p>
+        <p id="@Model.MoreSummaryId" class="card-text @MoreTransition" style="padding: 20px 20px 0px;">@((MarkupString)Model.MoreSummary)</p>
 
         <div class="button-placeholder"></div>
     </div>
@@ -45,6 +45,7 @@
             {
                 IsClosed = !IsClosed;
                 await UpdateComponents();
+                StateHasChanged();
             } finally
             {
                 UpdateLock.Release();
@@ -81,8 +82,12 @@
             await UpdateLock.WaitAsync();
             try
             {
-                MoreHeight = await _JSRuntime.InvokeAsync<int>("helper.getHeight", Model.MoreSummaryId);
-                AreaHeight = await _JSRuntime.InvokeAsync<int>("helper.getHeight", Model.MoreSummaryId + "-area");
+                if (string.IsNullOrWhiteSpace(Model.MoreSummary) == false && string.IsNullOrWhiteSpace(Model.MoreSummaryId) == false)
+                {
+                    MoreHeight = await _JSRuntime.InvokeAsync<int>("helper.getHeight", Model.MoreSummaryId);
+                    AreaHeight = await _JSRuntime.InvokeAsync<int>("helper.getHeight", Model.MoreSummaryId + "-area");
+                }
+
                 await UpdateComponents();
                 StateHasChanged();
             } finally

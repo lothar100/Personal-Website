@@ -79,7 +79,7 @@ a:not([href]):not([tabindex]):hover {
 
 .button-placeholder {
     width: 100px;
-    height: 25px;
+    height: 45px;
 }
 
 .badge-pill {
