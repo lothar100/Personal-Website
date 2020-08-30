@@ -11,7 +11,7 @@
         <span></span>
     </div>
 
-    <div class="@NavCollapse @NavSlide custom-slideTray mt-3" @onclick="ToggleNavMenu">
+    <div id="slideTray" class="@NavCollapse @NavSlide custom-slideTray mt-3" style="@Style @Visible" @onclick="ToggleNavMenu">
         <ul class="nav flex-column">
 
             <li class="nav-item px-3">
@@ -27,7 +27,7 @@
                     if ((string.IsNullOrWhiteSpace(module.LinkId) && string.IsNullOrWhiteSpace(module.LinkText)) == false)
                     {
                         var linkId = $"#{module.LinkId}";
-                        var glyph = string.IsNullOrWhiteSpace(module.LinkGlyph) ? "oi-bolt" : module.LinkGlyph;
+                        var glyph = string.IsNullOrWhiteSpace(module.LinkGlyph) ? "oi-terminal" : module.LinkGlyph;
 
                         <li class="nav-item px-3">
                             <AnchorLink class="nav-link" href="@linkId">
@@ -38,13 +38,16 @@
                 }
             }
 
+            <AuthorizeView>
+                <Authorized>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="admin">
+                            <span class="oi oi-browser" aria-hidden="true"></span> Admin
+                        </NavLink>
+                    </li>
+                </Authorized>
+            </AuthorizeView>
 
-
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="admin">
-                    <span class="oi oi-browser" aria-hidden="true"></span> Admin
-                </NavLink>
-            </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" @onclick="ToggleDarkMode">
                     <span class="oi oi-contrast" aria-hidden="true"></span>@NavTheme
@@ -57,6 +60,9 @@
 
 @code {
     private List<PageModuleModel> Modules;
+    private string Style => $"right: -{Width}px;";
+    private string Visible = "visibility: hidden;";
+    private int Width = 1000;
 
     protected override void OnInitialized()
     {
@@ -72,6 +78,7 @@
     {
         ModuleService.OnUpdate -= UpdateModules;
         Modules = await _Service.GetAll();
+        StateHasChanged();
         ModuleService.OnUpdate += UpdateModules;
     }
 
@@ -90,11 +97,17 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         darkMode = await _JSRuntime.InvokeAsync<string>("darkMode.status", null);
-        NavCollapse = null; //collapsed until page loads, then sliding animation handles show/hide
+        NavCollapse = null; //-- collapsed until page loads, then sliding animation handles show/hide
+        if (Modules != null)
+        {
+            Width = await _JSRuntime.InvokeAsync<int>("helper.getWidth", "slideTray");
+            StateHasChanged();
+        }
     }
 
     private void ToggleNavMenu()
     {
+        Visible = string.Empty; //-- keeps tray invisible until the width has been calculated properly
         isClosed = !isClosed;
     }
 

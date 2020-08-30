@@ -2,7 +2,6 @@
 .custom-slideTray {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
     position: fixed;
-    right: -178.22px;
     z-index: 4;
     border-bottom-left-radius: .25rem !important;
     transform: translateX(-100%);
