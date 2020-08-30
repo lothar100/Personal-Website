@@ -7,7 +7,7 @@
 
         <div class="container pb-3">
             <div class="card" style="max-width: 90rem">
-                <div class="card-body">
+                <div id="contactEmail" class="card-body">
                     <h3 class="card-title">Contact Me</h3>
                     <EditForm Model="@Model" OnValidSubmit="SendEmail" @onkeydown="ClearMessages">
                         <DataAnnotationsValidator />
@@ -23,7 +23,6 @@
                             <ValidationMessage For="@(() => Model.Name)" />
                         </div>
                         
-
                         <div class="pl-1 pt-2">
                             <label class="mb-1" for="name">
                                 <span class="oi oi-envelope-closed"></span>
@@ -35,8 +34,6 @@
                             <ValidationMessage For="@(() => Model.EmailAddress)" />
                         </div>
                         
-
-
                         <div class="pl-1 pt-2">
                             <label class="mb-1" for="name">
                                 <span class="oi oi-comment-square"></span>

@@ -15,6 +15,8 @@ namespace Personal_Website.Data.Services {
 
         public string TargetId;
 
+        public List<PageModuleModel> CachedModules { get; set; }
+
         public ModuleService(SqlDbContext context)
         {
             _context = context;
@@ -24,7 +26,8 @@ namespace Personal_Website.Data.Services {
         {
             try
             {
-                return await _context.Modules.ToListAsync();
+                CachedModules = await _context.Modules.ToListAsync();
+                return CachedModules;
             }
             finally
             {

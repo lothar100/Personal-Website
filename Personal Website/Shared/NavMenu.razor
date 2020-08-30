@@ -1,5 +1,6 @@
 ﻿@inject IJSRuntime _JSRuntime
 @inject ModuleService _Service
+@inject SessionState _SessionState
 @implements IDisposable
 
 <div class="navbar-light custom-nav">
@@ -22,7 +23,7 @@
 
             @if (Modules != null)
             {
-                @foreach (var module in Modules)
+                @foreach (var module in Modules.OrderBy(module => module.SortId))
                 {
                     if ((string.IsNullOrWhiteSpace(module.LinkId) && string.IsNullOrWhiteSpace(module.LinkText)) == false)
                     {
@@ -36,6 +37,15 @@
                         </li>
                     }
                 }
+            }
+
+            @if (_SessionState.IsAdminView != true)
+            {
+                <li class="nav-item px-3">
+                    <AnchorLink class="nav-link" href="#contactEmail">
+                        <span class="oi oi-envelope-closed" aria-hidden="true"></span> Contact
+                    </AnchorLink>
+                </li>
             }
 
             <AuthorizeView>
@@ -76,10 +86,8 @@
 
     private async Task UpdateModules()
     {
-        ModuleService.OnUpdate -= UpdateModules;
-        Modules = await _Service.GetAll();
+        Modules = _Service.CachedModules;
         StateHasChanged();
-        ModuleService.OnUpdate += UpdateModules;
     }
 
     private bool isClosed = true;
@@ -96,10 +104,10 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        darkMode = await _JSRuntime.InvokeAsync<string>("darkMode.status", null);
         NavCollapse = null; //-- collapsed until page loads, then sliding animation handles show/hide
-        if (Modules != null)
+        if (Width == 1000 && Modules != null)
         {
+            darkMode = await _JSRuntime.InvokeAsync<string>("darkMode.status", null);
             Width = await _JSRuntime.InvokeAsync<int>("helper.getWidth", "slideTray");
             StateHasChanged();
         }
@@ -114,5 +122,6 @@
     private async Task ToggleDarkMode()
     {
         await _JSRuntime.InvokeVoidAsync("darkMode.toggle");
+        darkMode = await _JSRuntime.InvokeAsync<string>("darkMode.status", null);
     }
 }
