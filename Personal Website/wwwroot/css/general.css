@@ -90,6 +90,10 @@ a:not([href]):not([tabindex]):hover {
     height: 30px;
 }
 
+.btn-download {
+    margin-bottom: 10px;
+}
+
 .badge-pill {
     margin-top: -18px;
     margin-left: 5px;
