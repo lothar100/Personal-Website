@@ -180,6 +180,14 @@ input:focus {
     float: left;
 }
 
+.img-pluralsight {
+    max-width: 800px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: block;
+}
+
 .videoWrapper {
     position: relative;
     padding-bottom: calc(56.25% + .75rem);
