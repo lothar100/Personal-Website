@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Personal_Website.Data.Context;
 using Personal_Website.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Personal_Website.Data.Services {
     public class ModuleService {
 
+        public static event Func<Task> OnUpdate;
+
         private readonly SqlDbContext _context;
+
+        public string TargetId;
 
         public ModuleService(SqlDbContext context)
         {
@@ -20,7 +22,17 @@ namespace Personal_Website.Data.Services {
 
         public async Task<List<PageModuleModel>> GetAll()
         {
-            return await _context.Modules.ToListAsync();
+            try
+            {
+                return await _context.Modules.ToListAsync();
+            }
+            finally
+            {
+                if(OnUpdate != null)
+                {
+                    await OnUpdate.Invoke();
+                }
+            }
         }
 
         public async Task<PageModuleModel> GetPrev(int sortId)

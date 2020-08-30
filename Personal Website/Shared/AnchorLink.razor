@@ -1,0 +1,54 @@
+﻿@*https://github.com/MikaBerglund/anchor-link-in-blazor-application*@
+
+@inject ModuleService _Service
+@inject NavigationManager _NavigationManager
+@inject IJSRuntime _JSRuntime
+
+<a @attributes="Attributes" @onclick="AnchorOnClickAsync" @onclick:preventDefault="@preventDefault">@ChildContent</a>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IDictionary<string, object> Attributes { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private string targetId = null;
+    private bool preventDefault = false;
+
+    public AnchorLink()
+    {
+        Attributes = new Dictionary<string, object>();
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (Attributes.ContainsKey("href"))
+        {
+            string href = $"{Attributes["href"]}";
+            if (href.StartsWith("#"))
+            {
+                targetId = href.Substring(1);
+                preventDefault = true;
+            }
+        }
+        base.OnParametersSet();
+    }
+
+    private async Task AnchorOnClickAsync()
+    {
+        if (string.IsNullOrEmpty(targetId) == false)
+        {
+            if (string.IsNullOrWhiteSpace(_NavigationManager.ToBaseRelativePath(_NavigationManager.Uri)) == false)
+            {
+                _Service.TargetId = targetId;
+                _NavigationManager.NavigateTo("");
+            }
+            else
+            {
+                await _JSRuntime.InvokeVoidAsync("helper.scrollIntoView", targetId);
+            }
+
+        }
+    }
+}

@@ -15,7 +15,10 @@ namespace Personal_Website.Data.Services {
         [JSInvokable]
         public static async Task OnBrowserResize()
         {
-            await OnResize?.Invoke();
+            if (OnResize != null)
+            {
+                await OnResize.Invoke();
+            }
         }
 
     }

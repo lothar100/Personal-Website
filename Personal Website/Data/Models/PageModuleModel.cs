@@ -1,9 +1,4 @@
-﻿using Personal_Website.Classes.Helpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Personal_Website.Data.Models {
     public class PageModuleModel {
@@ -12,7 +7,10 @@ namespace Personal_Website.Data.Models {
         public int Id { get; set; }
         public int SortId { get; set; }
         public int Type { get; set; }
-        public string Name { get; set; }
+
+        public string LinkId { get; set; }
+        public string LinkText { get; set; }
+        public string LinkGlyph { get; set; }
 
         public string Title { get; set; }
         public string Badges { get; set; }

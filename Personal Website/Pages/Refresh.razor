@@ -1,11 +1,11 @@
 ﻿@page "/refresh"
-@inject NavigationManager NavigationManager
+@inject NavigationManager _NavigationManager
 
 @code {
 
     protected override void OnInitialized()
     {
-        NavigationManager.NavigateTo("");
+        _NavigationManager.NavigateTo("");
     }
 
 }

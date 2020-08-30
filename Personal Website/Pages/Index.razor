@@ -2,6 +2,7 @@
 @inject NavigationManager _NavigationManager
 @inject AuthenticationStateProvider _AuthenticationStateProvider
 @inject SessionState _SessionState
+@inject IJSRuntime _JSRuntime
 @page "/"
 
 @if (Modules == null || authState == null)
@@ -12,20 +13,10 @@ else
 {
     <AuthorizeView>
         <Authorized>
-            @if (_SessionState.IsAdminView == true)
-            {
-                <div class="container pb-3">
-                    <h3 class="d-inline mb-0">Admin View</h3>
-                    <div class="d-inline mx-1" @onclick="ToggleView"><span class="oi oi-eye text-success align-middle"></span></div>
-                </div>
-            }
-            else
-            {
-                <div class="container pb-3">
-                    <h3 class="d-inline mb-0">Public View</h3>
-                    <div class="d-inline mx-1" @onclick="ToggleView"><span class="oi oi-eye text-muted align-middle"></span></div>
-                </div>
-            }
+            <div class="container pb-3">
+                <h3 class="d-inline mb-0">@Text</h3>
+                <div class="d-inline mx-1" @onclick="ToggleView"><span class="oi oi-eye align-middle @Style"></span></div>
+            </div>
         </Authorized>
     </AuthorizeView>
 
@@ -48,13 +39,26 @@ else
     private AuthenticationState authState;
     private List<PageModuleModel> Modules;
 
+    private string Text => _SessionState.IsAdminView ?? false ? "Admin View" : "Public View";
+    private string Style => _SessionState.IsAdminView ?? false ? "text-success" : "text-muted";
+
     protected override async Task OnInitializedAsync()
     {
         authState = await _AuthenticationStateProvider.GetAuthenticationStateAsync();
         Modules = await _Service.GetAll();
+
         if (_SessionState.IsAdminView == null)
         {
             _SessionState.IsAdminView = authState.User.Identity.IsAuthenticated;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Modules != null && _Service.TargetId != null)
+        {
+            await _JSRuntime.InvokeVoidAsync("helper.scrollIntoView", _Service.TargetId);
+            _Service.TargetId = null;
         }
     }
 
