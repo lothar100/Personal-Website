@@ -36,14 +36,22 @@ a:not([href]):not([tabindex]):hover {
 }
 
 .education-indent {
-
-    text-indent:30px;
-   
+    text-indent:10px;
 }
 
 @media (min-width: 576px){
     .education-indent {
         text-indent: 3px;
+    }
+}
+
+.education-indent-minor {
+    text-indent: 55px;
+}
+
+@media (min-width: 576px) {
+    .education-indent-minor {
+        text-indent: 10px;
     }
 }
 
@@ -159,6 +167,13 @@ input:focus {
     height: 400px;
     margin: auto;
     display: block;
+}
+
+.img-rit {
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+    float: left;
 }
 
 .videoWrapper {
