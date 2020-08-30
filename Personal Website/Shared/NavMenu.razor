@@ -86,6 +86,7 @@
 
     private async Task UpdateModules()
     {
+        await Task.Delay(300); //-- without the delay here, the host server runs width calulation or some event in the wrong order causing width to be zero.
         Modules = _Service.CachedModules;
         StateHasChanged();
     }
@@ -105,9 +106,9 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         NavCollapse = null; //-- collapsed until page loads, then sliding animation handles show/hide
+        darkMode = await _JSRuntime.InvokeAsync<string>("darkMode.status", null);
         if (Width == 1000 && Modules != null)
         {
-            darkMode = await _JSRuntime.InvokeAsync<string>("darkMode.status", null);
             Width = await _JSRuntime.InvokeAsync<int>("helper.getWidth", "slideTray");
             StateHasChanged();
         }
@@ -122,6 +123,5 @@
     private async Task ToggleDarkMode()
     {
         await _JSRuntime.InvokeVoidAsync("darkMode.toggle");
-        darkMode = await _JSRuntime.InvokeAsync<string>("darkMode.status", null);
     }
 }
