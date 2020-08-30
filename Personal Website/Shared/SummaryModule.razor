@@ -1,10 +1,12 @@
 ﻿@if (string.IsNullOrWhiteSpace(Model.Summary) == false)
 {
     <br />
-    <p class="card-text">@((MarkupString)Model.Summary)</p>
+    <p class="card-text @Centered">@((MarkupString)Model.Summary)</p>
 }
 
 @code {
     [Parameter]
     public PageModuleModel Model { get; set; }
+
+    private string Centered => Model?.CenterSummary ?? false ? "text-center" : string.Empty;
 }

@@ -15,6 +15,7 @@ namespace Personal_Website.Data.Models {
         public string Title { get; set; }
         public string Badges { get; set; }
 
+        public bool CenterSummary { get; set; }
         public string Summary { get; set; }
         public string MoreSummary { get; set; }
         public string MoreSummaryId { get; set; }

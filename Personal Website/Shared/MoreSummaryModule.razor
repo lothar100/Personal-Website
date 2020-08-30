@@ -6,13 +6,13 @@
 @if (string.IsNullOrWhiteSpace(Model.MoreSummary) == false && string.IsNullOrWhiteSpace(Model.MoreSummaryId) == false)
 {
     <div id="@Model.MoreSummaryId-area" class="more-summary @AreaTransition" style="visibility: hidden; position:absolute;" augmented-ui="tl-clip tr-clip exe">
-        <p id="@Model.MoreSummaryId" class="card-text @MoreTransition" style="padding: 20px 20px 0px;">@((MarkupString)Model.MoreSummary)</p>
+        <p id="@Model.MoreSummaryId" class="card-text @Centered @MoreTransition" style="padding: 20px 20px 0px;">@((MarkupString)Model.MoreSummary)</p>
 
         <div class="button-placeholder"></div>
     </div>
 
     <div class="more-summary @AreaTransition" style="@AreaStyle" augmented-ui="tl-clip tr-clip exe">
-        <p class="card-text @MoreTransition" style="@MoreStyle">@((MarkupString)Model.MoreSummary)</p>
+        <p class="card-text @Centered @MoreTransition" style="@MoreStyle">@((MarkupString)Model.MoreSummary)</p>
     </div>
 
     <p @onclick="ToggleCollapse">
@@ -35,6 +35,8 @@
     private int MoreHeight;
 
     private SemaphoreSlim UpdateLock = new SemaphoreSlim(1, 1);
+
+    private string Centered => Model?.CenterSummary ?? false ? "text-center" : string.Empty;
 
     private async Task ToggleCollapse()
     {
