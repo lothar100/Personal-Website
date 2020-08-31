@@ -1,0 +1,26 @@
+﻿@if (Images.Count() > 1 && Model.ImageType == (int)Enums.ImageTypes.Grid)
+{
+    <div class="img-grid-module">
+        <div class="row">
+            @for (int i = 1; i <= NumCols; i++)
+            {
+                <div class="col">
+                    @for (int j = i; j - 1 < Images.Count(); j += NumCols)
+                    {
+                        <img class="card-img" src="./images/@Images[j-1]">
+                    }
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public PageModuleModel Model { get; set; }
+
+    private string[] Images => Model.ImageName?.Split(',') ?? new string[] {};
+    private bool Even => (Images.Count() % 2 == 0);
+    private bool Quad => (Images.Count() % 4 == 0);
+    private int NumCols => (Even || Quad) ? (Quad ? 4 : 2) : 3;
+}

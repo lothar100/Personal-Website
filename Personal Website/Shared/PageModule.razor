@@ -23,6 +23,8 @@
 
                                 <ImageModule Model="@Model" />
 
+                                <GridImageModule Model="@Model" />
+
                                 <VideoModule Model="@Model" />
 
                                 <SummaryModule Model="@Model" />
@@ -88,7 +90,7 @@ else
 
                                     <small>image count (0-1)</small>
                                     <div><InputNumber type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.ImageCount"></InputNumber></div>
-                                    <small>image type (1-2)</small>
+                                    <small>image type (1 inner, 2 outer, 3 grid)</small>
                                     <div><InputNumber type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.ImageType"></InputNumber></div>
                                     <small>image name</small>
                                     <div><InputText type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.ImageName"></InputText></div>

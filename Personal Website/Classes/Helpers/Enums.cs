@@ -8,7 +8,8 @@ namespace Personal_Website.Classes.Helpers {
 
         public enum ImageTypes {
             Inside = 1,
-            Outside = 2
+            Outside = 2,
+            Grid = 3
         }
 
     }

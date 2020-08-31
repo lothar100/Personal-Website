@@ -159,6 +159,63 @@ input:focus {
     user-select: none;
 }
 
+.img-grid-module {
+    max-width: 80%;
+    margin: auto;
+}
+
+    .img-grid-module .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .img-grid-module .col {
+        flex: 25%;
+        max-width: 25%;
+        margin: auto;
+    }
+
+    .img-grid-module img {
+        margin: 4px;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+@media screen and (max-width: 1200px) {
+    .img-grid-module {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .img-grid-module .col {
+        flex: 50%;
+        max-width: 50%;
+    }
+
+    .img-grid-module {
+        max-width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .img-grid-module .col {
+        max-width: 80%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .img-grid-module {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .img-grid-module .col {
+        flex: 100%;
+    }
+}
+
 .img-self {
     max-width: 200px;
     max-height: 200px;
