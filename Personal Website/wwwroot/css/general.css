@@ -176,7 +176,7 @@ input:focus {
     }
 
     .img-grid-module img {
-        margin: 4px;
+        margin-top: 8px;
         vertical-align: middle;
         width: 100%;
     }
