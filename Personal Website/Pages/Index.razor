@@ -17,13 +17,18 @@ else
                 <h3 class="d-inline mb-0">@Text</h3>
                 <div class="d-inline mx-1" @onclick="ToggleView"><span class="oi oi-eye align-middle @Style"></span></div>
             </div>
+            @foreach (var model in Modules.OrderBy(module => module.SortId))
+            {
+                <PageModule Model="model" IsAdminView="@_SessionState.IsAdminView" />
+            }
         </Authorized>
+        <NotAuthorized>
+            @foreach (var model in Modules.Where(module => module.Active).OrderBy(module => module.SortId))
+            {
+                <PageModule Model="model" IsAdminView="@_SessionState.IsAdminView" />
+            }
+        </NotAuthorized>
     </AuthorizeView>
-
-    @foreach (var model in Modules.OrderBy(module => module.SortId))
-    {
-        <PageModule Model="model" IsAdminView="@_SessionState.IsAdminView" />
-    }
 
     @if (_SessionState.IsAdminView == true)
     {

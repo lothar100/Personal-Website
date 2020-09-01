@@ -23,7 +23,7 @@
 
             @if (Modules != null)
             {
-                @foreach (var module in Modules.OrderBy(module => module.SortId))
+                @foreach (var module in Modules.Where(module => module.Active).OrderBy(module => module.SortId))
                 {
                     if ((string.IsNullOrWhiteSpace(module.LinkId) && string.IsNullOrWhiteSpace(module.LinkText)) == false)
                     {

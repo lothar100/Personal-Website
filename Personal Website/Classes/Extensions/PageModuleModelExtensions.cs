@@ -10,7 +10,6 @@ namespace Personal_Website.Classes.Extensions {
 
         public static bool HasContent(this PageModuleModel model)
         {
-            if (model.Active != true) return false;
             if (string.IsNullOrWhiteSpace(model.Title) == false) return true;
             if (string.IsNullOrWhiteSpace(model.Summary) == false) return true;
             if (string.IsNullOrWhiteSpace(model.VideoSrc) == false) return true;
