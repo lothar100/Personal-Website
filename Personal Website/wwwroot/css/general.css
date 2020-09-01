@@ -106,8 +106,7 @@ a:not([href]):not([tabindex]):hover {
 
 @media screen and (max-width: 480px) {
     .badge-group {
-        visibility: hidden;
-        position: absolute;
+        display: block;
     }
 }
 

@@ -58,6 +58,13 @@ else
                             <div class="card-body">
                                 <EditForm Model="@Model" OnValidSubmit="Save">
 
+                                    <br />
+                                    <div class="form-check">
+                                        <InputCheckbox id="activeCtrl" type="checkbox" class="form-check-input" @bind-Value="@Model.Active"></InputCheckbox>
+                                        <label class="form-check-label" for="activeCtrl">Active</label>
+                                    </div>
+                                    <br />
+
                                     <small>link id</small>
                                     <div><InputText type="text" class="card-text form-control form-control-sm maxWidth288" @bind-Value="@Model.LinkId"></InputText></div>
                                     <small>link text</small>

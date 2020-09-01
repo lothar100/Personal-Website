@@ -26,6 +26,8 @@ namespace Personal_Website.Data.Models {
         public string ImageCSS { get; set; }
 
         public string VideoSrc { get; set; }
-        
+
+        public bool Active { get; set; }
+
     }
 }
