@@ -169,6 +169,13 @@ input:focus {
     user-select: none;
 }
 
+.oi-arrow-thick-right {
+    -webkit-transform: rotate(-45deg) scale(0.5);
+    -moz-transform: rotate(-45deg) scale(0.5);
+    -o-transform: rotate(-45deg) scale(0.5);
+    transform: rotate(-45deg) scale(0.5);
+}
+
 .img-grid-module {
     max-width: 80%;
     margin: auto;
@@ -338,6 +345,10 @@ input:focus {
     .navbar-toggler {
         background-color: rgba(255, 255, 255, 0.1);
     }
+
+ul {
+    list-style-type: none;
+}
 
     .validation-message {
         position: relative;
