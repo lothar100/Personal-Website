@@ -6,19 +6,11 @@
     <AuthorizeView>
         <Authorized>
             <br />
+            <div id="qrcode"></div>
             @if (string.IsNullOrWhiteSpace(User) == false)
             {
-                <div>User: @User</div>
+                <div>Current User: @User</div>
             }
-            @if (string.IsNullOrWhiteSpace(Issuer) == false)
-            {
-                <div>Issuer: @Issuer</div>
-            }
-            @if (string.IsNullOrWhiteSpace(Secret) == false)
-            {
-                <div>Secret: @Secret</div>
-            }
-            <div id="qrcode"></div>
             <br />
         </Authorized>
     </AuthorizeView>

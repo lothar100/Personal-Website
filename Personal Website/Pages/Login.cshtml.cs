@@ -33,7 +33,7 @@ namespace Personal_Website.Pages {
                 return BadRequest(ex.Message);
             }
 
-            //check password
+            //check 2fa code
             var secret = _configuration.GetValue<string>("AdminSettings:Secret");
             var totp = new Totp(Base32Encoding.ToBytes(secret));
 
