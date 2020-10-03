@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
+using OtpNet;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -21,7 +22,7 @@ namespace Personal_Website.Pages {
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> OnGetAsync(string password)
+        public async Task<IActionResult> OnGetAsync(string code)
         {
             //clear the existing external cookie
             try
@@ -33,15 +34,20 @@ namespace Personal_Website.Pages {
             }
 
             //check password
-            if (password != _configuration.GetValue<string>("AdminSettings:Password"))
+            var secret = _configuration.GetValue<string>("AdminSettings:Secret");
+            var totp = new Totp(Base32Encoding.ToBytes(secret));
+
+            if (code != totp.ComputeTotp())
             {
-                return BadRequest("Invalid Password");
+                return BadRequest("Invalid Code");
             }
 
             //success, set claims identity now
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, _configuration.GetValue<string>("AdminSettings:Username")),
+                new Claim("secret", _configuration.GetValue<string>("AdminSettings:Secret")),
+                new Claim("issuer", _configuration.GetValue<string>("AdminSettings:Issuer")),
                 new Claim(ClaimTypes.Role, "Admin")
             };
 
@@ -57,7 +63,8 @@ namespace Personal_Website.Pages {
             try
             {
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

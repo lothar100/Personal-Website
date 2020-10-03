@@ -3,10 +3,10 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Personal_Website.Data.Models {
-    public class AdminModel {
+    public class AuthModel {
 
-        [Display(Name = "Enter Admin Password:")]
-        public string Password { get; set; }
+        [Display(Name = "Enter 2FA Code:")]
+        public string Code { get; set; }
 
     }
 }

@@ -1,15 +1,65 @@
 ﻿
 @inject NavigationManager _NavigationManager
+@inject AuthenticationStateProvider _AuthenticationStateProvider
+@inject IJSRuntime _JSRuntime
+
+    <AuthorizeView>
+        <Authorized>
+            <br />
+            @if (string.IsNullOrWhiteSpace(User) == false)
+            {
+                <div>User: @User</div>
+            }
+            @if (string.IsNullOrWhiteSpace(Issuer) == false)
+            {
+                <div>Issuer: @Issuer</div>
+            }
+            @if (string.IsNullOrWhiteSpace(Secret) == false)
+            {
+                <div>Secret: @Secret</div>
+            }
+            <div id="qrcode"></div>
+            <br />
+        </Authorized>
+    </AuthorizeView>
 
     <div class="py-1">
         <button class="btn btn-outline-dark btn-sm" @onclick="Submit">Logout</button>
     </div>
 
 @code {
+    string User;
+    string Secret;
+    string Issuer;
+    private AuthenticationState authState;
+
+    protected override async Task OnInitializedAsync()
+    {
+        authState = await _AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        if (authState.User.Identity.IsAuthenticated)
+        {
+            User = authState.User.Identity.Name;
+            Secret = authState.User.Claims.First(c => c.Type.Equals("secret")).Value;
+            Issuer = authState.User.Claims.First(c => c.Type.Equals("issuer")).Value;
+        }
+
+        //use to generate new secret
+        //Secret = OtpNet.Base32Encoding.ToString(OtpNet.KeyGeneration.GenerateRandomKey(OtpNet.OtpHashMode.Sha256));
+    }
 
     private void Submit()
     {
         _NavigationManager.NavigateTo("/logout", true);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var path = $"otpauth://totp/{Issuer}:{User}?secret={Secret}&issuer={Issuer}";
+            await _JSRuntime.InvokeVoidAsync("helper.displayQRCode", "qrcode", path);
+        }
     }
 
 }

@@ -28,5 +28,15 @@ window.helper = {
                 scrollTop: helper.getScrollPosition(elementId) - 78 //-- offset to account for top bar and padding between cards
             }, 1000);
         }
+    },
+
+    displayQRCode: function (elementId, path) {
+        var qrcode = new QRCode(elementId, {
+            text: path,
+            width: 128,
+            height: 128,
+            colorDark: "#000000",
+            colorLight: "#ffffff"
+        });
     }
 }

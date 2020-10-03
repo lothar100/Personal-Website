@@ -17,10 +17,10 @@ namespace Personal_Website.Controllers {
         }
 
         [HttpPost("[action]")]
-        public IActionResult CheckPassword(AdminModel admin)
+        public IActionResult CheckPassword(AuthModel admin)
         {
             //check password
-            if (admin.Password != _configuration.GetValue<string>("AdminSettings:Password"))
+            if (admin.Code != _configuration.GetValue<string>("AdminSettings:Password"))
             {
                 return BadRequest("Invalid Password");
             }
