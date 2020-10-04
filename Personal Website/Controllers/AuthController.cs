@@ -21,7 +21,7 @@ namespace Personal_Website.Controllers {
         [HttpPost("[action]")]
         public IActionResult CheckPassword(AuthModel auth)
         {
-            if (auth.Password.PasswordEncode() != _configuration.GetValue<string>("AdminSettings:Password"))
+            if (auth.Password.PasswordEncode() != _configuration.GetValue<string>("Auth:Password"))
             {
                 return BadRequest("Invalid Password");
             }
@@ -32,7 +32,7 @@ namespace Personal_Website.Controllers {
         [HttpPost("[action]")]
         public IActionResult CheckCode(AuthModel auth)
         {
-            string secret = _configuration.GetValue<string>("AdminSettings:Secret");
+            string secret = _configuration.GetValue<string>("Auth:Secret");
             Totp totp = new Totp(Base32Encoding.ToBytes(secret));
 
             if (auth.Code != totp.ComputeTotp())

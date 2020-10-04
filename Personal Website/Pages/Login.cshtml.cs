@@ -35,7 +35,7 @@ namespace Personal_Website.Pages {
             }
 
             //verify 2fa code
-            var secret = _configuration.GetValue<string>("AdminSettings:Secret");
+            var secret = _configuration.GetValue<string>("Auth:Secret");
             var totp = new Totp(Base32Encoding.ToBytes(secret));
 
             if (code != totp.ComputeTotp())
@@ -44,7 +44,7 @@ namespace Personal_Website.Pages {
             }
 
             //verify password
-            if (password.PasswordEncode() != _configuration.GetValue<string>("AdminSettings:Password"))
+            if (password.PasswordEncode() != _configuration.GetValue<string>("Auth:Password"))
             {
                 return BadRequest("Invalid Password");
             }
@@ -52,10 +52,10 @@ namespace Personal_Website.Pages {
             //success, set claims identity now
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, _configuration.GetValue<string>("AdminSettings:Username")),
-                new Claim("secret", _configuration.GetValue<string>("AdminSettings:Secret")),
-                new Claim("issuer", _configuration.GetValue<string>("AdminSettings:Issuer")),
-                new Claim(ClaimTypes.Role, "Admin")
+                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(ClaimTypes.Name, _configuration.GetValue<string>("Auth:Username")),
+                new Claim("secret", _configuration.GetValue<string>("Auth:Secret")),
+                new Claim("issuer", _configuration.GetValue<string>("Auth:Issuer"))
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
