@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using OtpNet;
+using Personal_Website.Classes.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -33,13 +34,19 @@ namespace Personal_Website.Pages {
                 return BadRequest(ex.Message);
             }
 
-            //check 2fa code
+            //verify 2fa code
             var secret = _configuration.GetValue<string>("AdminSettings:Secret");
             var totp = new Totp(Base32Encoding.ToBytes(secret));
 
             if (code != totp.ComputeTotp())
             {
                 return BadRequest("Invalid Code");
+            }
+
+            //verify password
+            if (password.PasswordEncode() != _configuration.GetValue<string>("AdminSettings:Password"))
+            {
+                return BadRequest("Invalid Password");
             }
 
             //success, set claims identity now

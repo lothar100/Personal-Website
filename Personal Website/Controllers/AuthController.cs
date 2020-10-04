@@ -21,9 +21,6 @@ namespace Personal_Website.Controllers {
         [HttpPost("[action]")]
         public IActionResult CheckPassword(AuthModel auth)
         {
-            var test1 = auth.Password.PasswordEncode();
-            var test2 = _configuration.GetValue<string>("AdminSettings:Password");
-
             if (auth.Password.PasswordEncode() != _configuration.GetValue<string>("AdminSettings:Password"))
             {
                 return BadRequest("Invalid Password");
