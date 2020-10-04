@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace Personal_Website.Classes.Extensions {
@@ -17,6 +15,13 @@ namespace Personal_Website.Classes.Extensions {
         {
             if (string.IsNullOrWhiteSpace(value)) return 1;
             return value.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length;
+        }
+
+        public static string PasswordEncode(this string password)
+        {
+            byte[] bytes = Encoding.Unicode.GetBytes(password);
+            byte[] hash = HashAlgorithm.Create("SHA256").ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
         }
 
     }

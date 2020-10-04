@@ -22,7 +22,7 @@ namespace Personal_Website.Pages {
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> OnGetAsync(string code)
+        public async Task<IActionResult> OnGetAsync(string password, string code)
         {
             //clear the existing external cookie
             try
