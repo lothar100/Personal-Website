@@ -42,8 +42,13 @@ a {
     background-color: var(--menu-text);
 }
 
+.card {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px 0px, 0 8px 24px 0 rgba(0, 0, 0, 0);
+}
+
 .custom-topBar {
     background-color: var(--topbar-bg);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px, 0 3px 10px 0 rgba(0, 0, 0, 0);
 }
 
 .custom-topBar {
