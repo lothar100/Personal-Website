@@ -17,7 +17,7 @@ namespace Personal_Website.Classes.Extensions {
             return value.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length;
         }
 
-        public static string PasswordEncode(this string password)
+        public static string Encrypt(this string password)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(password);
             byte[] hash = HashAlgorithm.Create("SHA256").ComputeHash(bytes);

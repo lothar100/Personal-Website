@@ -38,13 +38,13 @@ namespace Personal_Website.Pages {
             var secret = _configuration.GetValue<string>("Auth:Secret");
             var totp = new Totp(Base32Encoding.ToBytes(secret));
 
-            if (code != totp.ComputeTotp())
+            if (code != totp.ComputeTotp().Encrypt())
             {
                 return BadRequest("Invalid Code");
             }
 
             //verify password
-            if (password.PasswordEncode() != _configuration.GetValue<string>("Auth:Password"))
+            if (password != _configuration.GetValue<string>("Auth:Password"))
             {
                 return BadRequest("Invalid Password");
             }
