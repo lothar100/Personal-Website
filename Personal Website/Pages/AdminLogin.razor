@@ -1,25 +1,29 @@
-﻿@page "/admin"
+﻿@inject ModuleService _Service
+@page "/admin"
 
-    <div class="card" style="max-width: 25rem">
+<div class="card" style="max-width: 25rem">
 
-        <div class="card-body">
-            <h3 class="card-title">Admin Authorization</h3>
+    <div class="card-body">
+        <h3 class="card-title">Admin Authorization</h3>
 
-            <AuthorizeView>
+        <AuthorizeView>
 
-                <Authorized>
-                    <LogoutAdminUser />
-                </Authorized>
+            <Authorized>
+                <LogoutAdminUser />
+            </Authorized>
 
-                <NotAuthorized>
-                    <EnterAdminPassword />
-                </NotAuthorized>
+            <NotAuthorized>
+                <EnterAdminPassword />
+            </NotAuthorized>
 
-            </AuthorizeView>
-        </div>
-
+        </AuthorizeView>
     </div>
 
-@code {
+</div>
 
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await _Service.GetAll();
+    }
 }
