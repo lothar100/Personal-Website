@@ -77,11 +77,11 @@ After entering the password and two-factor code from my Google Authenticator app
 
 **Unresolved design flaw:** The sign-in request should be handled by a POST action rather than a GET action. Using a GET action leaves path history with parameters in the browser. For now this is okay because sensitive information in the path is encrypted and the two-factor code is time sensitive. This only leaves a 30 second window of vulnerability on the browser that was used to successfuly sign-in. When using a POST action the authentication state was being stored by the HttpContext of the server and not the client. This would result in an unauthorized status following the redirect to the main page. I'm unsure if this is a flaw within Blazor or the way I've structured the request. (If you know how to resolve this issue please email me at pete.langevoort@gmail.com)
 
->**Sign-in Process:**
->-- Clear any existing external cookie
->-- Verify two-factor code
->-- Verify password
->-- If verification was successful, the user's identity profile will be created and consumed by Microsoft.AspNetCore.Authentication SignInAsync method.
+>**Sign-in Process:**\
+>- Clear any existing external cookie\
+>- Verify two-factor code\
+>- Verify password\
+>- If verification was successful, the user's identity profile will be created and consumed by Microsoft.AspNetCore.Authentication SignInAsync method.\
 
 ###### `[Login.cshtml.cs]`
 ```cs
@@ -144,5 +144,5 @@ public async Task<IActionResult> OnGetAsync(string password, string code)
 
 Once the sign-in is authorized I am able to view my website with content editing controls that only appear in <Authorized> views.
 
->**Additional Information:**
->-- Only a single user exists and the verification credentials are stored in appsettings.Production.json
+>**Additional Information:**\
+>- Only a single user exists and the verification credentials are stored in appsettings.Production.json
