@@ -31,7 +31,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-The App file begins with a <CascadingAuthenticationState> tag.
+The App file begins with a `<CascadingAuthenticationState>` tag.
 This tag will automatically update the underlying authentication state and broadcast that information to child elements.
 
 ###### `[App.razor]`
@@ -50,7 +50,7 @@ This tag will automatically update the underlying authentication state and broad
 </CascadingAuthenticationState>
 ```
 
-With the cascading authentication state in place an <AuthorizeView> tag can be used to display differing content depending on the user's authorization status.
+With the cascading authentication state in place an `<AuthorizeView>` tag can be used to display differing content depending on the user's authorization status.
 In my website the login page will display the component for logging out if the state is authorized and display the sign-in form component when the state is not authorized.
 
 ###### `[AdminLogin.razor]`
@@ -142,7 +142,7 @@ public async Task<IActionResult> OnGetAsync(string password, string code)
 }
 ```
 
-Once the sign-in is authorized I am able to view my website with content editing controls that only appear in <Authorized> views.
+Once the sign-in is authorized I am able to view my website with content editing controls that only appear in `<Authorized>` views.
 
 >**Additional Information:**
 >- Only a single user exists and the verification credentials are stored in appsettings.Production.json
