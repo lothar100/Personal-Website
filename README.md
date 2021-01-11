@@ -68,10 +68,10 @@ In my website the login page will display the component for logging out if the s
 ```
 
 ###### Sign-in form step 1:
-[![](https://tiny-img.com/images/custom-uploads/optimized/admin-password.png)]()
+[![](https://pietrlangevoort.com/images/admin-password.png)]()
 
 ###### Sign-in form step 2:
-[![](https://tiny-img.com/images/custom-uploads/optimized/admin-code.png)]()
+[![](https://pietrlangevoort.com/images/admin-code.png)]()
 
 After entering the password and two-factor code from my Google Authenticator app the form will submit to a GET action that handles and verifies the sign-in request.
 
